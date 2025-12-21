@@ -44,7 +44,7 @@ function onTabChange(val) {
 </script>
 
 <template>
-    <div class="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 min-h-screen pb-16 sm:pb-0 select-none text-xs">
+    <div class="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 min-h-screen pb-24 p-2 sm:pb-0 select-none text-xs">
         <slot />
 
         <!-- Mobile-first bottom tab bar (visible on small screens only) -->

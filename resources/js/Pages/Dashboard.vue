@@ -39,7 +39,7 @@ const quickActions = [
             </div>
         </template>
 
-        <div class="p-4 sm:p-8 max-w-7xl mx-auto">
+        <div class="sm:p-8 max-w-7xl mx-auto">
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <div v-for="stat in stats" :key="stat.label" class="bg-white dark:bg-zinc-700 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
