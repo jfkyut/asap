@@ -28,7 +28,10 @@ createInertiaApp({
             .use(pinia)
             .use(PrimeVue, {
                 theme: {
-                    preset: Aura
+                    preset: Aura,
+                    options: {
+                        darkModeSelector: '.dark'
+                    }
                 },
                 ripple: true,
             })

@@ -3,6 +3,7 @@
 import { ref } from 'vue';
 import { TabList, Tab, Tabs } from 'primevue';
 import { router } from '@inertiajs/vue3';
+import SettingsDropdown from './auth-layout-partials/SettingsDropdown.vue';
 
 const items = [
     {
@@ -25,11 +26,11 @@ const items = [
         icon: 'ri-inbox-line',
         route: '/inbox',
     },
-    {
-        label: 'Profile',
-        icon: 'ri-user-line',
-        route: '/profile',
-    },
+    // {
+    //     label: 'Profile',
+    //     icon: 'ri-user-line',
+    //     route: '/profile',
+    // },
 ];
 
 // current path to keep the active tab in sync
@@ -58,6 +59,7 @@ function onTabChange(val) {
                                 <span class="text-xs mt-1">{{ tab.label }}</span>
                             </div>
                         </Tab>
+                        <SettingsDropdown />
                     </TabList>
                 </Tabs>
             </div>
