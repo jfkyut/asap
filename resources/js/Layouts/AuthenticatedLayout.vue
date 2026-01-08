@@ -1,7 +1,7 @@
 <script setup>
 
 import { ref } from 'vue';
-import { TabList, Tab, Tabs } from 'primevue';
+import { TabList, Tab, Tabs, Button } from 'primevue';
 import { router } from '@inertiajs/vue3';
 import SettingsDropdown from './auth-layout-partials/SettingsDropdown.vue';
 
@@ -16,11 +16,11 @@ const items = [
         icon: 'ri-exchange-box-line',
         route: '/transactions',
     },
-    {
-        label: 'Cart',
-        icon: 'ri-shopping-cart-line',
-        route: '/cart',
-    },
+    // {
+    //     label: 'Cart',
+    //     icon: 'ri-shopping-cart-line',
+    //     route: '/cart',
+    // },
     {
         label: 'Inbox',
         icon: 'ri-inbox-line',
@@ -42,10 +42,32 @@ function onTabChange(val) {
     }
 }
 
+const back = () => {
+    window.history.back();
+};
+
 </script>
 
 <template>
-    <div class="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 min-h-screen pb-24 p-2 select-none text-xs">
+    <div class="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 min-h-screen pt-16 pb-24 p-2 select-none text-xs">
+        <!-- header -->
+        <div class="bg-teal-600 text-white px-2 py-1 flex items-center justify-between shadow-sm fixed top-0 left-0 right-0 z-30">
+            <div>
+                <Button 
+                    @click="back" 
+                    severity="secondary"
+                    variant="text"
+                >
+                    <i class="ri-arrow-left-s-line text-white"></i>
+                </Button>
+            </div>
+            <header class="w-full text-center font-semibold">
+                <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+                    <slot name="header"></slot>
+                </div>
+            </header>
+        </div>
+
         <slot />
 
         <!-- Mobile-first bottom tab bar (visible on small screens only) -->

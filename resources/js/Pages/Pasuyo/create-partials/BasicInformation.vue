@@ -1,0 +1,56 @@
+<script setup>
+
+import { FloatLabel, InputText, Select } from 'primevue';
+
+defineProps({
+    form: Object,
+});
+
+</script>
+
+<template>
+    <div class="flex flex-col h-48">
+        <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+            <div class="space-y-2">
+                
+                <FloatLabel variant="on">
+                    <InputText 
+                        id="full_name" 
+                        v-model="form.full_name" 
+                        class="w-72" 
+                        required 
+                    />
+                    <label for="full_name">Full Name</label>
+                </FloatLabel>
+                <FloatLabel variant="on">
+                    <InputText 
+                        id="phone" 
+                        v-model="form.phone" 
+                        class="w-72" 
+                        required 
+                    />
+                    <label for="phone">Phone Number</label>
+                </FloatLabel>
+                <FloatLabel variant="on">
+                    <Select 
+                        id="location"
+                        :options="['option 1', 'option 2']" 
+                        v-model="form.location" 
+                        class="w-72" 
+                        required 
+                    />
+                    <label for="location">Location</label>
+                </FloatLabel>
+                <FloatLabel variant="on">
+                    <InputText 
+                        id="note" 
+                        v-model="form.note" 
+                        class="w-72" 
+                        required 
+                    />
+                    <label for="note">Note</label>
+                </FloatLabel>
+            </div>
+        </div>
+    </div>
+</template>

@@ -10,6 +10,8 @@ import { InputText, Button, FloatLabel } from 'primevue';
 const form = useForm({
     name: '',
     email: '',
+    phone: '',
+    role: 'user',
     password: '',
     password_confirmation: '',
 });
@@ -58,6 +60,23 @@ const submit = () => {
                         type="email"
                         class="mt-1 block w-full"
                         v-model="form.email"
+                        required
+                        autocomplete="username"
+                    />
+                </FloatLabel>
+
+                <InputError class="mt-2" :message="form.errors.email" />
+            </div>
+
+            <div class="mt-4">
+                <FloatLabel variant="on">
+                    <InputLabel for="phone" value="Phone (0998-765-4321)" />
+
+                    <InputText
+                        id="phone"
+                        type="tel"
+                        class="mt-1 block w-full"
+                        v-model="form.phone"
                         required
                         autocomplete="username"
                     />

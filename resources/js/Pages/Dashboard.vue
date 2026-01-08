@@ -2,28 +2,9 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import { router } from '@inertiajs/vue3';
 
-const stats = [
-    { label: 'Total Balance', value: '$12,450.50', icon: 'ri-wallet-3-line', color: 'bg-blue-500' },
-    { label: 'Income', value: '+$5,200.00', icon: 'ri-arrow-up-line', color: 'bg-green-500' },
-    { label: 'Expenses', value: '-$1,850.30', icon: 'ri-arrow-down-line', color: 'bg-red-500' },
-    { label: 'Savings Goal', value: '68%', icon: 'ri-goal-line', color: 'bg-purple-500' },
-];
-
-const recentTransactions = [
-    { id: 1, description: 'Coffee at Cafe Noir', amount: '-$5.50', type: 'expense', date: 'Today', icon: 'ri-takeaway-line' },
-    { id: 2, description: 'Salary Deposit', amount: '+$3,500.00', type: 'income', date: 'Yesterday', icon: 'ri-bank-card-line' },
-    { id: 3, description: 'Electric Bill Payment', amount: '-$125.00', type: 'expense', date: 'Dec 19', icon: 'ri-flashlight-line' },
-    { id: 4, description: 'Freelance Project', amount: '+$850.00', type: 'income', date: 'Dec 18', icon: 'ri-briefcase-line' },
-    { id: 5, description: 'Gym Membership', amount: '-$45.00', type: 'expense', date: 'Dec 17', icon: 'ri-heart-pulse-line' },
-];
-
-const quickActions = [
-    { label: 'Send Money', icon: 'ri-send-plane-line' },
-    { label: 'Request Money', icon: 'ri-hand-coin-line' },
-    { label: 'Add Card', icon: 'ri-bank-card-2-line' },
-    { label: 'Invoice', icon: 'ri-file-invoice-line' },
-];
 </script>
 
 <template>
@@ -31,83 +12,99 @@ const quickActions = [
 
     <AuthenticatedLayout>
         <template #header>
-            <div class="flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Welcome back! 👋</h2>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Here's your financial overview</p>
-                </div>
-            </div>
+            Home
         </template>
 
+        <div class="border border-teal-500 dark:border-teal-800 p-2 rounded flex justify-between items-center mb-6 bg-teal-50 dark:bg-teal-900/20">
+            <div class="text-sm capitalize font-bold">
+                Hello, {{ $page.props.auth.user.name }}! 
+            </div>
+            <div>
+                <ApplicationLogo class="w-10" />
+            </div>
+        </div>
+
         <div class="sm:p-8 max-w-7xl mx-auto">
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                <div v-for="stat in stats" :key="stat.label" class="bg-white dark:bg-zinc-700 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <p class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ stat.label }}</p>
-                            <p class="text-2xl font-bold text-gray-900 dark:text-white mt-2">{{ stat.value }}</p>
-                        </div>
-                        <div :class="`${stat.color} rounded-lg p-3 text-white`">
-                            <i :class="`${stat.icon} text-xl`"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Actions -->
             <div class="mb-8">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
+                <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
+                    What You Can Do
+                </h3>
+                
+                <!-- Core Systems Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- System 1 -->
+                    <div @click="router.get(route('pasuyo.create'))" class="group relative overflow-hidden rounded-lg border-2 border-blue-400 dark:border-blue-600 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/50 p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-blue-200 dark:bg-blue-700 rounded-full -mr-8 -mt-8 opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white text-xl mr-4">
+                                    <i class="ri-run-line"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-zinc-900 dark:text-white">
+                                    Pasuyo, Pabili ATBP.
+                                </h4>
+                            </div>
+                            
+                            <p class="text-zinc-700 dark:text-zinc-300 mb-4 text-sm">
+                                Allows users to request errands from a rider, whether it’s for groceries, food, medicine, or other items.
+                            </p>
+                            
+                            <div class="flex items-center text-blue-600 dark:text-blue-400 font-semibold text-sm hover:translate-x-1 transition-transform">
+                                Access System
+                                <span class="ml-2">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System 2 -->
+                    <div class="group relative overflow-hidden rounded-lg border-2 border-purple-400 dark:border-purple-600 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/50 p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-purple-200 dark:bg-purple-700 rounded-full -mr-8 -mt-8 opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white text-xl mr-4">
+                                    <i class="ri-route-line"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-zinc-900 dark:text-white">
+                                    Pick & Drop
+                                </h4>
+                            </div>
+                            
+                            <p class="text-zinc-700 dark:text-zinc-300 mb-4 text-sm">
+                                Get same-day delivery services. Request a rider to pick up items from one location and drop them off at another, all within the day.
+                            </p>
+                            
+                            <div class="flex items-center text-purple-600 dark:text-purple-400 font-semibold text-sm hover:translate-x-1 transition-transform">
+                                Access System
+                                <span class="ml-2">→</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats Section -->
+            <div class="mt-12">
+                <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Quick Stats</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button v-for="action in quickActions" :key="action.label" class="bg-white dark:bg-zinc-700 rounded-lg shadow-sm p-6 hover:shadow-md transition-all hover:scale-105 active:scale-95">
-                        <div class="flex flex-col items-center gap-2">
-                            <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg p-3 text-white">
-                                <i :class="`${action.icon} text-xl`"></i>
-                            </div>
-                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">{{ action.label }}</span>
-                        </div>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Recent Transactions -->
-            <div class="bg-white dark:bg-zinc-700 rounded-lg shadow-sm">
-                <div class="p-6 border-b dark:border-zinc-600">
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Transactions</h3>
-                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 text-sm font-medium">View All</a>
+                    <div class="bg-white dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700">
+                        <p class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">Placeholder</p>
+                        <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-2">—</p>
+                    </div>
+                    <div class="bg-white dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700">
+                        <p class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">Placeholder</p>
+                        <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-2">—</p>
+                    </div>
+                    <div class="bg-white dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700">
+                        <p class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">Placeholder</p>
+                        <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-2">—</p>
+                    </div>
+                    <div class="bg-white dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700">
+                        <p class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">Placeholder</p>
+                        <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-2">—</p>
                     </div>
                 </div>
-                <div class="divide-y dark:divide-zinc-600">
-                    <div v-for="transaction in recentTransactions" :key="transaction.id" class="p-6 hover:bg-gray-50 dark:hover:bg-zinc-600 transition-colors">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div :class="`rounded-full p-3 ${transaction.type === 'income' ? 'bg-green-100 dark:bg-green-900' : 'bg-red-100 dark:bg-red-900'}`">
-                                    <i :class="`${transaction.icon} text-lg ${transaction.type === 'income' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium text-gray-900 dark:text-white">{{ transaction.description }}</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ transaction.date }}</p>
-                                </div>
-                            </div>
-                            <span :class="`font-semibold ${transaction.type === 'income' ? 'text-green-600 dark:text-green-400' : 'text-gray-900 dark:text-white'}`">
-                                {{ transaction.amount }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Savings Goal Progress -->
-            <div class="mt-8 bg-white dark:bg-zinc-700 rounded-lg shadow-sm p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Savings Goal</h3>
-                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">$8,450 / $12,500</span>
-                </div>
-                <div class="w-full bg-gray-200 dark:bg-zinc-600 rounded-full h-3 overflow-hidden">
-                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full" style="width: 68%"></div>
-                </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">You're 68% towards your goal. Keep it up! 🎯</p>
             </div>
         </div>
     </AuthenticatedLayout>
