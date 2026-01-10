@@ -49,9 +49,9 @@ const back = () => {
 </script>
 
 <template>
-    <div class="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 min-h-screen pt-16 pb-24 p-2 select-none text-xs">
+    <div :class="!route().current().includes('dashboard') ? 'pt-16' : ''" class="bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 min-h-screen pb-24 p-2 select-none text-xs">
         <!-- header -->
-        <div class="bg-teal-600 text-white px-2 py-1 flex items-center justify-between shadow-sm fixed top-0 left-0 right-0 z-30">
+        <div v-if="!route().current().includes('dashboard')" class="bg-teal-600 text-white px-2 py-1 flex items-center justify-between shadow-sm fixed top-0 left-0 right-0 z-30">
             <div>
                 <Button 
                     @click="back" 
