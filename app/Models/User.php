@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Pasuyo\Pasuyo;
+use App\Models\PickAndDrop\PickAndDrop;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -53,5 +55,8 @@ class User extends Authenticatable
         return $this->hasMany(Pasuyo::class);
     }
 
-    
+    public function pickAndDrops()
+    {
+        return $this->hasMany(PickAndDrop::class);
+    }
 }

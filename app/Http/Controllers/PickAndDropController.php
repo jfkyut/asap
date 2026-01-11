@@ -2,31 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PickAndDrop\PickAndDrop;
 use Illuminate\Http\Request;
-use App\Models\Pasuyo\Pasuyo;
+use App\Http\Requests\PickAndDrop\StorePickAndDropRequest;
 
-class UserTransactionController extends Controller
+class PickAndDropController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $payusos = Pasuyo::where('user_id', $request->user()->id)
-                         ->with('attachments', 'trackings')
-                         ->paginate();
-
-        $pickAndDrops = PickAndDrop::where('user_id', $request->user()->id)
-                                    ->with('trackings')
-                                    ->paginate();
-
-        return inertia('User/Transactions', [
-            'transactions' => [
-                'pasuyos' => $payusos,
-                'pickAndDrops' => $pickAndDrops
-            ]
-        ]);
+        //
     }
 
     /**
@@ -34,15 +20,21 @@ class UserTransactionController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('PickAndDrop/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePickAndDropRequest $request)
     {
-        //
+        $pickAndDrop = $request->user()->pickAndDrops()->create($request->validated());
+
+        $pickAndDrop->trackings()->create([
+            'status_update' => 'Pick and Drop request created.',
+        ]);
+
+        return back();
     }
 
     /**

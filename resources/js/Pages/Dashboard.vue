@@ -51,14 +51,14 @@ import { router } from '@inertiajs/vue3';
                             </p>
                             
                             <div class="flex items-center text-blue-600 dark:text-blue-400 font-semibold text-sm hover:translate-x-1 transition-transform">
-                                Access System
+                                Request an Errand
                                 <span class="ml-2">→</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- System 2 -->
-                    <div class="group relative overflow-hidden rounded-lg border-2 border-purple-400 dark:border-purple-600 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/50 p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                    <div @click="router.get(route('pick-and-drop.create'))" class="group relative overflow-hidden rounded-lg border-2 border-purple-400 dark:border-purple-600 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/50 p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-purple-200 dark:bg-purple-700 rounded-full -mr-8 -mt-8 opacity-50 group-hover:opacity-75 transition-opacity"></div>
                         
                         <div class="relative z-10">
@@ -76,7 +76,7 @@ import { router } from '@inertiajs/vue3';
                             </p>
                             
                             <div class="flex items-center text-purple-600 dark:text-purple-400 font-semibold text-sm hover:translate-x-1 transition-transform">
-                                Access System
+                                Request a Pickup
                                 <span class="ml-2">→</span>
                             </div>
                         </div>

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Pasuyo;
 
+use App\Models\Pasuyo\PasuyoTracking;
 use Illuminate\Database\Eloquent\Model;
 
 class Pasuyo extends Model

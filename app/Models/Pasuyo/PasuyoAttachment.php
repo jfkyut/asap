@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Pasuyo;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PasuyoTracking extends Model
+class PasuyoAttachment extends Model
 {
     protected $fillable = [
         'pasuyo_id',
-        'status_update',
+        'file_path',
+        'file_name',
     ];
 }
