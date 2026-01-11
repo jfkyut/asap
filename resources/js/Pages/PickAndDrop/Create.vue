@@ -80,7 +80,7 @@ onMounted(() => {
                 <StepItem value="1">
                     <Step>Sender</Step>
                     <StepPanel v-slot="{ activateCallback }">
-                        <div class="space-y-4 m-2 ml-0">
+                        <div class="space-y-4">
                             <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
                                 <Sender :form="form" />
                             </div>
@@ -93,7 +93,7 @@ onMounted(() => {
                 <StepItem value="2">
                     <Step>Receiver</Step>
                     <StepPanel v-slot="{ activateCallback }">
-                        <div class="space-y-4 m-2 ml-0">
+                        <div class="space-y-4">
                             <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
                                 <Receiver :form="form" />
                             </div>
@@ -107,7 +107,7 @@ onMounted(() => {
                 <StepItem value="3">
                     <Step>Payment Method</Step>
                     <StepPanel v-slot="{ activateCallback }">
-                        <div class="space-y-4 m-2 ml-0">
+                        <div class="space-y-4">
                             <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
                                 <div class="space-y-4 w-full">
                                     <FloatLabel variant="on">

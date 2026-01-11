@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="space-y-6 m-2 ml-0">
+    <div class="space-y-6">
         <!-- Sender Section -->
         <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
             <div class="flex items-center gap-2 mb-4">

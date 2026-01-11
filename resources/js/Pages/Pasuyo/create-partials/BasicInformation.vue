@@ -11,13 +11,13 @@ defineProps({
 <template>
     <div class="flex flex-col h-48">
         <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
-            <div class="space-y-2">
+            <div class="space-y-2 w-full">
                 
                 <FloatLabel variant="on">
                     <InputText 
                         id="full_name" 
                         v-model="form.full_name" 
-                        class="w-72" 
+                        class="w-full" 
                         required 
                     />
                     <label for="full_name">Full Name</label>
@@ -26,7 +26,7 @@ defineProps({
                     <InputText 
                         id="phone" 
                         v-model="form.phone" 
-                        class="w-72" 
+                        class="w-full" 
                         required 
                     />
                     <label for="phone">Phone Number</label>
@@ -36,7 +36,7 @@ defineProps({
                         id="location"
                         :options="['option 1', 'option 2']" 
                         v-model="form.location" 
-                        class="w-72" 
+                        class="w-full" 
                         required 
                     />
                     <label for="location">Location</label>
@@ -45,7 +45,7 @@ defineProps({
                     <InputText 
                         id="note" 
                         v-model="form.note" 
-                        class="w-72" 
+                        class="w-full" 
                         required 
                     />
                     <label for="note">Note</label>

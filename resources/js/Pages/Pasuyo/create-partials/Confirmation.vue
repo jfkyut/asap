@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="space-y-4 m-2 ml-0">
+    <div class="space-y-4">
         <!-- Header -->
         <div class="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
             <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 flex items-center gap-2">

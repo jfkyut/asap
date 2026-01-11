@@ -14,7 +14,7 @@ const { setFiles } = useCommon();
 <template>
     <div class="flex flex-col h-auto">
         <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
-            <div class="space-y-2 w-full pr-2">
+            <div class="space-y-2 w-full">
                 <FloatLabel variant="on">
                     <Textarea 
                         id="content" 
