@@ -9,23 +9,19 @@ import {
     TabList,
     Tabs,
     TabPanels,
-    TabPanel
+    TabPanel,
+    InputText
 
 } from 'primevue';
-import { useTransactions } from '@/Composables/transactions';
 import PasuyoTab from './transaction-partials/PasuyoTab.vue';
 import PickAndDropTab from './transaction-partials/PickAndDropTab.vue';
+import SearchForm from '@/Components/SearchForm.vue';
 
 const props = defineProps({
     transactions: Object
 });
 
 const { transactions } = toRefs(props);
-const { 
-    getStatusSeverity, 
-    formatDate, 
-    formatTime 
-} = useTransactions();
 
 const pasuyos = computed(() => transactions.value?.pasuyos || []);
 const pickAndDrops = computed(() => transactions.value?.pickAndDrops || []);
@@ -41,11 +37,16 @@ const pickAndDrops = computed(() => transactions.value?.pickAndDrops || []);
             <h2>My Transactions</h2>
         </template>
 
-        <div class="min-h-screen">
+        <div>
             <div class="max-w-6xl mx-auto sm:px-0">
+                <InputText
+                    v-model="searchQuery"
+                    placeholder="Search Transactions..."
+                    class="w-full mb-4"
+                />
                 <!-- Tabs Navigation -->
                 <Tabs value="1" class="w-full">
-                    <div class="sticky top-10">
+                    <div class="sticky top-10 z-20">
                         <TabList class="flex gap-4 border-b border-zinc-200 dark:border-zinc-800">
                             <Tab value="1" class="w-[50%] bg-red-500">
                                 📦 Pasuyos
@@ -58,7 +59,7 @@ const pickAndDrops = computed(() => transactions.value?.pickAndDrops || []);
                         </TabList>
                     </div>
 
-                    <TabPanels>
+                    <TabPanels >
                         <TabPanel value="1">
                             <!-- Pasuyos Tab -->
                             <PasuyoTab :pasuyos="pasuyos" />
@@ -68,8 +69,6 @@ const pickAndDrops = computed(() => transactions.value?.pickAndDrops || []);
                             <PickAndDropTab :pick-and-drops="pickAndDrops" />
                         </TabPanel>
                     </TabPanels>
-
-                    
                 </Tabs>
             </div>
         </div>

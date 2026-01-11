@@ -31,7 +31,7 @@ const {
         <div v-else class="space-y-2">
             <div v-for="pickAndDrop in pickAndDrops" :key="pickAndDrop.id" class="bg-white dark:bg-zinc-900 rounded-lg shadow dark:shadow-lg hover:shadow-lg dark:hover:shadow-xl transition-shadow border dark:border-zinc-800 overflow-hidden">
                 <!-- Compact Header -->
-                <div class="px-4 py-3 flex items-center justify-between">
+                <div class="px-3 py-2 flex items-center justify-between">
                     <div class="flex items-center gap-2 flex-1 min-w-0">
                         <Tag :value="pickAndDrop.status.replace('_', ' ')" :severity="getStatusSeverity(pickAndDrop.status)" class="flex-shrink-0" />
                         <div class="min-w-0 flex-1">

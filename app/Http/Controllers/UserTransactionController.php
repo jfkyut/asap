@@ -31,43 +31,43 @@ class UserTransactionController extends Controller
         ]);
     }
 
-    public function pasuyoIndex(Request $request)
-    {
-        $pasuyoQuery = Pasuyo::query();
+    // public function pasuyoIndex(Request $request)
+    // {
+    //     $pasuyoQuery = Pasuyo::query();
 
-        $pasuyoQuery->where(function ($pasuyoQuery) use ($request) {
-            $pasuyoQuery->where('user_id', $request->user()->id);
+    //     $pasuyoQuery->where(function ($pasuyoQuery) use ($request) {
+    //         $pasuyoQuery->where('user_id', $request->user()->id);
 
-            if ($request->filled('status') && !empty($request->query('status'))) {
-                $pasuyoQuery->where('status', $request->query('status'));
-            }
-        });
+    //         if ($request->filled('status') && !empty($request->query('status'))) {
+    //             $pasuyoQuery->where('status', $request->query('status'));
+    //         }
+    //     });
 
-        $payusos = $pasuyoQuery->with('attachments', 'trackings')->paginate();
+    //     $payusos = $pasuyoQuery->with('attachments', 'trackings')->paginate();
 
-        return inertia('User/PasuyoTransactions', [
-            'pasuyos' => $payusos
-        ]);
-    }
+    //     return inertia('User/PasuyoTransactions', [
+    //         'pasuyos' => $payusos
+    //     ]);
+    // }
 
-    public function pickAndDropIndex(Request $request)
-    {
-        $pickAndDropQuery = PickAndDrop::query();
+    // public function pickAndDropIndex(Request $request)
+    // {
+    //     $pickAndDropQuery = PickAndDrop::query();
 
-        $pickAndDropQuery->where(function ($pickAndDropQuery) use ($request) {
-            $pickAndDropQuery->where('user_id', $request->user()->id);
+    //     $pickAndDropQuery->where(function ($pickAndDropQuery) use ($request) {
+    //         $pickAndDropQuery->where('user_id', $request->user()->id);
 
-            if ($request->filled('status') && !empty($request->query('status'))) {
-                $pickAndDropQuery->where('status', $request->query('status'));
-            }
-        });
+    //         if ($request->filled('status') && !empty($request->query('status'))) {
+    //             $pickAndDropQuery->where('status', $request->query('status'));
+    //         }
+    //     });
 
-        $pickAndDrops = $pickAndDropQuery->with('trackings')->paginate();
+    //     $pickAndDrops = $pickAndDropQuery->with('trackings')->paginate();
 
-        return inertia('User/PickAndDropTransactions', [
-            'pickAndDrops' => $pickAndDrops
-        ]);
-    }
+    //     return inertia('User/PickAndDropTransactions', [
+    //         'pickAndDrops' => $pickAndDrops
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.
