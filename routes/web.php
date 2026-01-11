@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
 
     // user transactions routes
     Route::get('/transactions', [App\Http\Controllers\UserTransactionController::class, 'index'])->name('transaction.index');
+    
 });
 
 require __DIR__.'/auth.php';

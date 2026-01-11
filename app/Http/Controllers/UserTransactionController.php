@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasuyo;
 use Illuminate\Http\Request;
 
 class UserTransactionController extends Controller
@@ -11,14 +12,13 @@ class UserTransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->load(
-                            'pasuyos.attachments', 
-                            'pasuyos.trackings'
-                        );
+        $payusos = Pasuyo::where('user_id', $request->user()->id)
+                         ->with('attachments', 'trackings')
+                         ->paginate();
 
         return inertia('User/Transactions', [
             'transactions' => [
-                'pasuyos' => $request->user()->pasuyos
+                'pasuyos' => $payusos
             ]
         ]);
     }
