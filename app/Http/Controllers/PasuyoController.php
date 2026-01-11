@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasuyo;
 use Illuminate\Http\Request;
+use App\Http\Requests\Pasuyo\StorePasuyoRequest;
 
 class PasuyoController extends Controller
 {
@@ -25,23 +27,31 @@ class PasuyoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePasuyoRequest $request)
     {
-        //
+        $pasuyo = $request->user()->pasuyos()->create($request->validated());
+
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $file) {
+                $path = $file->store('pasuyo_attachments', 'public');
+                $pasuyo->attachments()->create([
+                    'file_path' => $path,
+                    'file_name' => $file->getClientOriginalName(),
+                ]);
+            }
+        }
+
+        $pasuyo->trackings()->create([
+            'status_update' => 'Pasuyo request created.',
+        ]);
+
+        return back();
     }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }

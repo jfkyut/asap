@@ -23,7 +23,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // pasuyo routes
     Route::get('/pasuyo/create', [App\Http\Controllers\PasuyoController::class, 'create'])->name('pasuyo.create');
+    Route::post('/pasuyo/store', [App\Http\Controllers\PasuyoController::class, 'store'])->name('pasuyo.store');
+
+    // user transactions routes
+    Route::get('/transactions', [App\Http\Controllers\UserTransactionController::class, 'index'])->name('transaction.index');
 });
 
 require __DIR__.'/auth.php';

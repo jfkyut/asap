@@ -12,15 +12,18 @@ import {
     Textarea,
     Select,
     MultiSelect,
-    FloatLabel
+    FloatLabel,
 } from 'primevue';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import BasicInformation from './create-partials/BasicInformation.vue';
 import Content from './create-partials/Content.vue';
 import Confirmation from './create-partials/Confirmation.vue';
+import { useToast } from 'vue-toastification';
 
 const page = usePage();
+const toast = useToast();
+const isLoading = ref(false);
 
 const form = useForm({
     location: '',
@@ -35,7 +38,26 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('pasuyo.store'));
+
+    if (isLoading.value) {
+        return;
+    }
+
+    form.post(route('pasuyo.store'), {
+        onStart: () => {
+            isLoading.value = true;
+        },
+        onFinish: () => {
+            isLoading.value = false;
+        },
+        onSuccess: () => {
+            toast.success('Pasuyo request submitted successfully!');
+            form.reset();
+        },
+        onError: () => {
+            toast.error('There was an error submitting your request. Please check the form for errors.');
+        }
+    });
 };
 
 onMounted(() => {
@@ -62,7 +84,7 @@ onMounted(() => {
             Pasuyo, Pabili ATBP.
         </template>
 
-        <form @submit.prevent="submit" class="sm:p-8 max-w-7xl mx-auto">
+        <div class="sm:p-8 max-w-7xl mx-auto">
 
             <Stepper value="1">
                 <StepItem value="1">
@@ -93,7 +115,7 @@ onMounted(() => {
                         <div class="py-6 flex gap-2">
                             <Button label="Back" severity="secondary" @click="activateCallback('2')" />
                             <Button 
-                                type="submit"
+                                @click="submit"
                                 label="Submit Request" 
                                 :loading="form.processing"
                                 class="flex-1"
@@ -103,6 +125,6 @@ onMounted(() => {
                     </StepPanel>
                 </StepItem>
             </Stepper>
-        </form>
+        </div>
     </AuthenticatedLayout>
 </template>

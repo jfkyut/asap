@@ -1,10 +1,13 @@
 <script setup>
 
 import { FloatLabel, InputText, Textarea, Select } from 'primevue';
+import { useCommon } from '@/Composables/common';
 
 defineProps({
     form: Object,
 });
+
+const { setFiles } = useCommon();
 
 </script>
 
@@ -25,7 +28,7 @@ defineProps({
                 <FloatLabel variant="on">
                     <InputText 
                         id="attachments" 
-                        v-model="form.attachments" 
+                        @change="(e) => setFiles(e, (files) => form.attachments = files)"
                         class="w-full" 
                         type="file"
                         placeholder="as"
@@ -35,9 +38,8 @@ defineProps({
                 <FloatLabel variant="on">
                     <InputText 
                         id="budget" 
-                        v-model="form.budget" 
                         class="w-full" 
-                        required 
+                        v-model="form.budget"                   
                     />
                     <label for="budget">Approx Budget (Optional)</label>
                 </FloatLabel>

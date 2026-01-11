@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function pasuyos()
+    {
+        return $this->hasMany(Pasuyo::class);
+    }
 }

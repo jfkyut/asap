@@ -9,7 +9,7 @@ const items = [
     {
         label: 'Home',
         icon: 'ri-home-6-line',
-        route: '/dashboard',
+        route: '/',
     },
     {
         label: 'Transactions',
@@ -62,7 +62,7 @@ const back = () => {
                 </Button>
             </div>
             <header class="w-full text-center font-semibold">
-                <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+                <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 uppercase">
                     <slot name="header"></slot>
                 </div>
             </header>
