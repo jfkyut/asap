@@ -23,6 +23,7 @@ class StorePasuyoRequest extends FormRequest
     {
         return [
             'location' => 'required|string|max:255',
+            'location_coordinates' => 'nullable|string',
             'full_name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'note' => 'nullable|string',

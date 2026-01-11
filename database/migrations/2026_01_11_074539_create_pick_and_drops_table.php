@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('pick_and_drops', function (Blueprint $table) {
             $table->id();
             $table->longText('sender_location');
+            $table->longText('sender_location_coordinates')->nullable();
             $table->string('sender_full_name');
             $table->string('sender_phone');
             $table->longText('sender_note')->nullable();
             $table->longText('receiver_location');
+            $table->longText('receiver_location_coordinates')->nullable();
             $table->string('receiver_full_name');
             $table->string('receiver_phone');
             $table->longText('receiver_note')->nullable();

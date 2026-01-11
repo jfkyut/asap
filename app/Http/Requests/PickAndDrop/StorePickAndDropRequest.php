@@ -23,10 +23,12 @@ class StorePickAndDropRequest extends FormRequest
     {
         return [
             'sender_location' => 'required|string|max:255',
+            'sender_location_coordinates' => 'nullable|string',
             'sender_full_name' => 'required|string|max:255',
             'sender_phone' => 'required|string|max:20',
             'sender_note' => 'nullable|string',
             'receiver_location' => 'required|string|max:255',
+            'receiver_location_coordinates' => 'nullable|string',
             'receiver_full_name' => 'required|string|max:255',
             'receiver_phone' => 'required|string|max:20',
             'receiver_note' => 'nullable|string',

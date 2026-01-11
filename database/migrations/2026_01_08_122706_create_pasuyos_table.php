@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pasuyos', function (Blueprint $table) {
             $table->id();
             $table->longText('location');
+            $table->longText('location_coordinates')->nullable();
             $table->string('full_name');
             $table->string('phone');
             $table->longText('note')->nullable();
