@@ -2,6 +2,7 @@
 
 namespace App\Models\PickAndDrop;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class PickAndDrop extends Model
@@ -23,5 +24,10 @@ class PickAndDrop extends Model
     public function trackings()
     {
         return $this->hasMany(PickAndDropTracking::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
