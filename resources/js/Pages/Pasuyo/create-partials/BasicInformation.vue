@@ -4,13 +4,12 @@ import { FloatLabel, InputText, Select, Button } from 'primevue';
 import Modal from '@/Components/Modal.vue';
 import { ref } from 'vue';
 import Map from '@/Components/Map.vue';
+import AddLocationModal from '@/Components/AddLocationModal.vue';
 
 
 defineProps({
     form: Object,
 });
-
-const isOpenMap = ref(false);
 
 </script>
 
@@ -18,18 +17,7 @@ const isOpenMap = ref(false);
     <div class="flex flex-col h-48">
         <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
             <div class="space-y-2 w-full">
-                <Button @click="isOpenMap = true">
-                    Open Map
-                </Button>
-                <Modal
-                    max-width="4xl"
-                    :show="isOpenMap"
-                    @close="isOpenMap = false"
-                >
-                    <Map>
-                        
-                    </Map>
-                </Modal>
+                
                 <FloatLabel variant="on">
                     <InputText 
                         id="full_name" 
@@ -49,14 +37,8 @@ const isOpenMap = ref(false);
                     <label for="phone">Phone Number</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <Select 
-                        id="location"
-                        :options="['option 1', 'option 2']" 
-                        v-model="form.location" 
-                        class="w-full" 
-                        required 
-                    />
-                    <label for="location">Location</label>
+                    <AddLocationModal :form="form" />
+                    <label for="location">Select location from map</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
                     <InputText 
