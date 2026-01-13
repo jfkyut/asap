@@ -12,6 +12,9 @@ import 'remixicon/fonts/remixicon.css';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
+import "ol/ol.css";
+import OpenLayersMap from "vue3-openlayers";
+
 const pinia = createPinia();
 
 const toastOptions = {
@@ -43,6 +46,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(pinia)
+            .use(OpenLayersMap /*, options */)
             .use(PrimeVue, {
                 theme: {
                     preset: Aura,

@@ -21,9 +21,13 @@
     },
     "dependencies": {
         "@primeuix/themes": "^2.0.2",
+        "ol": "^10.7.0",
+        "ol-contextmenu": "^6.0.0",
+        "ol-ext": "^4.0.37",
         "pinia": "^3.0.4",
         "primevue": "^4.5.4",
         "remixicon": "^4.7.0",
-        "vue-toastification": "^2.0.0-rc.5"
+        "vue-toastification": "^2.0.0-rc.5",
+        "vue3-openlayers": "^12.2.0"
     }
 }

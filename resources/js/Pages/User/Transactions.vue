@@ -15,7 +15,6 @@ import {
 } from 'primevue';
 import PasuyoTab from './transaction-partials/PasuyoTab.vue';
 import PickAndDropTab from './transaction-partials/PickAndDropTab.vue';
-import SearchForm from '@/Components/SearchForm.vue';
 
 const props = defineProps({
     transactions: Object
@@ -39,11 +38,7 @@ const pickAndDrops = computed(() => transactions.value?.pickAndDrops || []);
 
         <div>
             <div class="max-w-6xl mx-auto sm:px-0">
-                <InputText
-                    v-model="searchQuery"
-                    placeholder="Search Transactions..."
-                    class="w-full mb-4"
-                />
+ 
                 <!-- Tabs Navigation -->
                 <Tabs value="1" class="w-full">
                     <div class="sticky top-10 z-20">
