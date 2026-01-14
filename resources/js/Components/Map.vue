@@ -9,9 +9,12 @@ const layerList = ref([]);
 
 const jawgLayer = ref(null);
 const satellite = ref(null);
+const terrain = ref(null);
 
 onMounted(() => {
     layerList.value.push(jawgLayer.value.tileLayer);
+    layerList.value.push(satellite.value.tileLayer);
+    layerList.value.push(terrain.value.tileLayer);
 })
 
 </script>
@@ -36,7 +39,21 @@ onMounted(() => {
         <ol-tile-layer ref="jawgLayer" title="JAWG">
             <ol-source-xyz
                 crossOrigin="anonymous"
-                url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=87PWIbRaZAGNmYDjlYsLkeTVJpQeCfl2Y61mcHopxXqSdxXExoTLEv7dwqBwSWuJ"
+                url="https://c.tile.jawg.io/jawg-terrain/{z}/{x}/{y}.png?access-token=9QWHp8FVOujnLDHXZGlml5yIisJOKoy55DOcjFpdXQWvBZeAce662c8rD0rKSBcT"
+            />
+        </ol-tile-layer>
+
+        <ol-tile-layer ref="terrain" title="Terrain">
+            <ol-source-xyz
+                crossOrigin="anonymous"
+                url="https://c.tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=9QWHp8FVOujnLDHXZGlml5yIisJOKoy55DOcjFpdXQWvBZeAce662c8rD0rKSBcT"
+            />
+        </ol-tile-layer>
+
+        <ol-tile-layer ref="terrain" title="Terrain">
+            <ol-source-xyz
+                crossOrigin="anonymous"
+                url="https://c.tile.jawg.io/jawg-streets/{z}/{x}/{y}.png?access-token=9QWHp8FVOujnLDHXZGlml5yIisJOKoy55DOcjFpdXQWvBZeAce662c8rD0rKSBcT"
             />
         </ol-tile-layer>
 

@@ -9,7 +9,7 @@ defineProps({
     form: Object,
     itemKey: {
         type: String,
-        default: () => 'location'
+        default: () => 'coordinates',
     }
 })
 
@@ -22,7 +22,7 @@ const changeDrawType = (active, draw) => {
     drawEnable.value = active;
     drawType.value = draw;
 
-    console.log(drawEnable.value, drawType.value);
+    
 };
 
 </script>
