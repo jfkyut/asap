@@ -1,6 +1,6 @@
 <script setup>
 
-import { FloatLabel, InputText, Textarea } from 'primevue';
+import { FloatLabel, InputText, Textarea, Select } from 'primevue';
 
 defineProps({
     form: Object,
@@ -11,9 +11,15 @@ defineProps({
 <template>
     <div class="space-y-4 w-full">
         <FloatLabel variant="on">
-            <InputText 
+            <Select 
                 class="w-full" 
-                v-model="form.receiver_location" 
+                v-model="form.receiver_location"
+                :options="[
+                    'Barangay Poblacion',
+                    'Barangay San Isidro',
+                    'Barangay Agutaya',
+                    'Barangay New Agutaya'
+                ]"
                 id="receiver_location" 
             />
             <label for="receiver_location">Receiver Location</label>

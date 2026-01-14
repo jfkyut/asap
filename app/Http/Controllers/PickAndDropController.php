@@ -34,7 +34,7 @@ class PickAndDropController extends Controller
             'status_update' => 'Pick and Drop request created.',
         ]);
 
-        return back();
+        return redirect()->route('dashboard');
     }
 
     /**

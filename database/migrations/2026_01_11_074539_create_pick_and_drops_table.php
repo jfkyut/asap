@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('sender_full_name');
             $table->string('sender_phone');
             $table->longText('sender_note')->nullable();
+            $table->longText('item_description')->nullable();
             $table->longText('receiver_location');
             $table->longText('receiver_location_coordinates')->nullable();
             $table->string('receiver_full_name');

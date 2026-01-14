@@ -45,7 +45,7 @@ class PasuyoController extends Controller
             'status_update' => 'Pasuyo request created.',
         ]);
 
-        return back();
+        return redirect()->route('dashboard');
     }
 
     /**

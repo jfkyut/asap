@@ -17,7 +17,7 @@ import { onMounted, ref } from 'vue';
 import { useToast } from 'vue-toastification';
 import Sender from './create-partials/Sender.vue';
 import Receiver from './create-partials/Receiver.vue';
-import Confirmation from '../Pasuyo/create-partials/Confirmation.vue';
+import Confirmation from './create-partials/Confirmation.vue';
 
 const page = usePage();
 const toast = useToast();
@@ -105,11 +105,20 @@ onMounted(() => {
                     </StepPanel>
                 </StepItem>
                 <StepItem value="3">
-                    <Step>Payment Method</Step>
+                    <Step>Item & Payment</Step>
                     <StepPanel v-slot="{ activateCallback }">
                         <div class="space-y-4">
                             <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
                                 <div class="space-y-4 w-full">
+                                    <FloatLabel variant="on">
+                                        <Textarea 
+                                            id="item_description" 
+                                            v-model="form.item_description" 
+                                            class="w-full"
+                                            auto-resize 
+                                        />
+                                        <label for="item_description">Item Description</label>
+                                    </FloatLabel>
                                     <FloatLabel variant="on">
                                         <Select 
                                             :options="['Cash on Delivery', 'Gcash']" 

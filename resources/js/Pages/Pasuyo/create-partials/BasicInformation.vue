@@ -1,8 +1,8 @@
 <script setup>
 
-import { FloatLabel, InputText, Select, Button } from 'primevue';
+import { FloatLabel, InputText, Select, Button, Textarea } from 'primevue';
 import Modal from '@/Components/Modal.vue';
-import { ref } from 'vue';
+import { ref, Text } from 'vue';
 import Map from '@/Components/Map.vue';
 import AddLocationModal from '@/Components/AddLocationModal.vue';
 
@@ -14,7 +14,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="flex flex-col h-48">
+    <div class="flex flex-col h-auto">
         <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
             <div class="space-y-2 w-full">
                 
@@ -37,17 +37,31 @@ defineProps({
                     <label for="phone">Phone Number</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <AddLocationModal :form="form" />
+                    <Select 
+                        v-model="form.location"
+                        class="w-full"
+                        :options="[
+                            'Barangay Poblacion',
+                            'Barangay San Isidro',
+                            'Barangay Agutaya',
+                            'Barangay New Agutaya'
+                        ]"
+                        required
+                    />
                     <label for="location">Select location from map</label>
                 </FloatLabel>
+                <!-- <FloatLabel variant="on">
+                    <AddLocationModal :form="form" />
+                    <label for="location">Select location from map</label>
+                </FloatLabel> -->
                 <FloatLabel variant="on">
-                    <InputText 
+                    <Textarea 
                         id="note" 
                         v-model="form.note" 
                         class="w-full" 
-                        required 
+                        auto-resize
                     />
-                    <label for="note">Note</label>
+                    <label for="note">Note (Optional)</label>
                 </FloatLabel>
             </div>
         </div>

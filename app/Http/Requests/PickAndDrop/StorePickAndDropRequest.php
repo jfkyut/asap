@@ -32,6 +32,7 @@ class StorePickAndDropRequest extends FormRequest
             'receiver_full_name' => 'required|string|max:255',
             'receiver_phone' => 'required|string|max:20',
             'receiver_note' => 'nullable|string',
+            'item_description' => 'nullable|string',
             'status' => 'required|string|max:50',
             'payment_method' => 'required|string|max:100',
         ];

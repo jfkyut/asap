@@ -18,6 +18,7 @@ class PickAndDrop extends Model
         'receiver_full_name',
         'receiver_phone',
         'receiver_note',
+        'item_description',
         'status',
         'payment_method',
         'user_id',

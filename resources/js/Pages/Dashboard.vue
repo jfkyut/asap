@@ -24,85 +24,112 @@ import { router } from '@inertiajs/vue3';
             </div>
         </div>
 
-        <div class="sm:p-8 max-w-7xl mx-auto">
-            <div class="mb-8">
-                <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
-                    What You Can Do
-                </h3>
-                
-                <!-- Core Systems Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- System 1 -->
-                    <div @click="router.get(route('pasuyo.create'))" class="group relative overflow-hidden rounded-lg border-2 border-blue-400 dark:border-blue-600 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/50 p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="absolute top-0 right-0 w-20 h-20 bg-blue-200 dark:bg-blue-700 rounded-full -mr-8 -mt-8 opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                        
-                        <div class="relative z-10">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white text-xl mr-4">
-                                    <i class="ri-run-line"></i>
-                                </div>
-                                <h4 class="text-xl font-bold text-zinc-900 dark:text-white">
-                                    Pasuyo, Pabili ATBP.
-                                </h4>
+        <div class="sm:p-6 max-w-7xl mx-auto px-2 py-2 sm:py-6">
+            <!-- Request Status Overview -->
+            <div class="mb-6">
+                <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">Your Requests</h3>
+                <div class="flex gap-2 overflow-x-auto pb-2 -mx-2 px-2 sm:mx-0 sm:px-0">
+                    <!-- Pending -->
+                    <div class="flex-shrink-0 min-w-max bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/40 dark:to-yellow-900/20 rounded-lg p-3 border-l-4 border-yellow-500">
+                        <div class="flex flex-col items-center text-center whitespace-nowrap">
+                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
+                                <i class="ri-time-line"></i>
                             </div>
-                            
-                            <p class="text-zinc-700 dark:text-zinc-300 mb-4 text-sm">
-                                Allows users to request errands from a rider, whether it’s for groceries, food, medicine, or other items.
-                            </p>
-                            
-                            <div class="flex items-center text-blue-600 dark:text-blue-400 font-semibold text-sm hover:translate-x-1 transition-transform">
-                                Request an Errand
-                                <span class="ml-2">→</span>
-                            </div>
+                            <p class="text-xs font-semibold text-yellow-700 dark:text-yellow-400 mb-1">Pending</p>
+                            <p class="text-lg font-bold text-zinc-900 dark:text-white">0</p>
                         </div>
                     </div>
 
-                    <!-- System 2 -->
-                    <div @click="router.get(route('pick-and-drop.create'))" class="group relative overflow-hidden rounded-lg border-2 border-purple-400 dark:border-purple-600 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/50 p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        <div class="absolute top-0 right-0 w-20 h-20 bg-purple-200 dark:bg-purple-700 rounded-full -mr-8 -mt-8 opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                        
-                        <div class="relative z-10">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white text-xl mr-4">
-                                    <i class="ri-route-line"></i>
-                                </div>
-                                <h4 class="text-xl font-bold text-zinc-900 dark:text-white">
-                                    Pick & Drop
-                                </h4>
+                    <!-- Accepted -->
+                    <div class="flex-shrink-0 min-w-max bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-900/20 rounded-lg p-3 border-l-4 border-blue-500">
+                        <div class="flex flex-col items-center text-center whitespace-nowrap">
+                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
+                                <i class="ri-check-line"></i>
                             </div>
-                            
-                            <p class="text-zinc-700 dark:text-zinc-300 mb-4 text-sm">
-                                Get same-day delivery services. Request a rider to pick up items from one location and drop them off at another, all within the day.
-                            </p>
-                            
-                            <div class="flex items-center text-purple-600 dark:text-purple-400 font-semibold text-sm hover:translate-x-1 transition-transform">
-                                Request a Pickup
-                                <span class="ml-2">→</span>
+                            <p class="text-xs font-semibold text-blue-700 dark:text-blue-400 mb-1">Accepted</p>
+                            <p class="text-lg font-bold text-zinc-900 dark:text-white">0</p>
+                        </div>
+                    </div>
+
+                    <!-- In Progress -->
+                    <div class="flex-shrink-0 min-w-max bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/40 dark:to-purple-900/20 rounded-lg p-3 border-l-4 border-purple-500">
+                        <div class="flex flex-col items-center text-center whitespace-nowrap">
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0 animate-pulse">
+                                <i class="ri-map-pin-user-line"></i>
                             </div>
+                            <p class="text-xs font-semibold text-purple-700 dark:text-purple-400 mb-1">In Progress</p>
+                            <p class="text-lg font-bold text-zinc-900 dark:text-white">0</p>
+                        </div>
+                    </div>
+
+                    <!-- Completed -->
+                    <div class="flex-shrink-0 min-w-max bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/40 dark:to-green-900/20 rounded-lg p-3 border-l-4 border-green-500">
+                        <div class="flex flex-col items-center text-center whitespace-nowrap">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
+                                <i class="ri-checkbox-circle-line"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-green-700 dark:text-green-400 mb-1">Completed</p>
+                            <p class="text-lg font-bold text-zinc-900 dark:text-white">0</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick Stats Section -->
-            <div class="mt-12">
-                <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Quick Stats</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700">
-                        <p class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">Placeholder</p>
-                        <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-2">—</p>
+            <div class="mb-6">
+                <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+                    What You Can Do
+                </h3>
+                
+                <!-- Core Systems Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- System 1 -->
+                    <div @click="router.get(route('pasuyo.create'))" class="group relative overflow-hidden rounded-lg border-2 border-blue-400 dark:border-blue-600 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/50 p-4 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-blue-200 dark:bg-blue-700 rounded-full -mr-6 -mt-6 opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-white text-sm mr-2 flex-shrink-0">
+                                    <i class="ri-run-line"></i>
+                                </div>
+                                <h4 class="text-sm font-bold text-zinc-900 dark:text-white">
+                                    Pasuyo
+                                </h4>
+                            </div>
+                            
+                            <p class="text-zinc-700 dark:text-zinc-300 mb-2 text-xs leading-tight">
+                                Request errands from a rider.
+                            </p>
+                            
+                            <div class="flex items-center text-blue-600 dark:text-blue-400 font-semibold text-xs hover:translate-x-1 transition-transform">
+                                Request
+                                <span class="ml-1">→</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700">
-                        <p class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">Placeholder</p>
-                        <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-2">—</p>
-                    </div>
-                    <div class="bg-white dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700">
-                        <p class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">Placeholder</p>
-                        <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-2">—</p>
-                    </div>
-                    <div class="bg-white dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700">
-                        <p class="text-zinc-600 dark:text-zinc-400 text-sm font-medium">Placeholder</p>
-                        <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-2">—</p>
+
+                    <!-- System 2 -->
+                    <div @click="router.get(route('pick-and-drop.create'))" class="group relative overflow-hidden rounded-lg border-2 border-purple-400 dark:border-purple-600 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/50 p-4 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-purple-200 dark:bg-purple-700 rounded-full -mr-6 -mt-6 opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center text-white text-sm mr-2 flex-shrink-0">
+                                    <i class="ri-route-line"></i>
+                                </div>
+                                <h4 class="text-sm font-bold text-zinc-900 dark:text-white">
+                                    Pick & Drop
+                                </h4>
+                            </div>
+                            
+                            <p class="text-zinc-700 dark:text-zinc-300 mb-2 text-xs leading-tight">
+                                Same-day delivery service.
+                            </p>
+                            
+                            <div class="flex items-center text-purple-600 dark:text-purple-400 font-semibold text-xs hover:translate-x-1 transition-transform">
+                                Request
+                                <span class="ml-1">→</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
