@@ -30,8 +30,8 @@ import { router } from '@inertiajs/vue3';
                 <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">Your Requests</h3>
                 <div class="flex gap-2 overflow-x-auto pb-2 -mx-2 px-2 sm:mx-0 sm:px-0">
                     <!-- Pending -->
-                    <div class="flex-shrink-0 min-w-max bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/40 dark:to-yellow-900/20 rounded-lg p-3 border-l-4 border-yellow-500">
-                        <div class="flex flex-col items-center text-center whitespace-nowrap">
+                    <div class="flex-shrink-0 w-24 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/40 dark:to-yellow-900/20 rounded-lg p-3 border-l-4 border-yellow-500">
+                        <div class="flex flex-col items-center text-center">
                             <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
                                 <i class="ri-time-line"></i>
                             </div>
@@ -41,8 +41,8 @@ import { router } from '@inertiajs/vue3';
                     </div>
 
                     <!-- Accepted -->
-                    <div class="flex-shrink-0 min-w-max bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-900/20 rounded-lg p-3 border-l-4 border-blue-500">
-                        <div class="flex flex-col items-center text-center whitespace-nowrap">
+                    <div class="flex-shrink-0 w-24 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-900/20 rounded-lg p-3 border-l-4 border-blue-500">
+                        <div class="flex flex-col items-center text-center">
                             <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
                                 <i class="ri-check-line"></i>
                             </div>
@@ -52,8 +52,8 @@ import { router } from '@inertiajs/vue3';
                     </div>
 
                     <!-- In Progress -->
-                    <div class="flex-shrink-0 min-w-max bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/40 dark:to-purple-900/20 rounded-lg p-3 border-l-4 border-purple-500">
-                        <div class="flex flex-col items-center text-center whitespace-nowrap">
+                    <div class="flex-shrink-0 w-24 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/40 dark:to-purple-900/20 rounded-lg p-3 border-l-4 border-purple-500">
+                        <div class="flex flex-col items-center text-center">
                             <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0 animate-pulse">
                                 <i class="ri-map-pin-user-line"></i>
                             </div>
@@ -63,8 +63,8 @@ import { router } from '@inertiajs/vue3';
                     </div>
 
                     <!-- Completed -->
-                    <div class="flex-shrink-0 min-w-max bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/40 dark:to-green-900/20 rounded-lg p-3 border-l-4 border-green-500">
-                        <div class="flex flex-col items-center text-center whitespace-nowrap">
+                    <div class="flex-shrink-0 w-24 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/40 dark:to-green-900/20 rounded-lg p-3 border-l-4 border-green-500">
+                        <div class="flex flex-col items-center text-center">
                             <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
                                 <i class="ri-checkbox-circle-line"></i>
                             </div>
