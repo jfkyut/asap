@@ -2,6 +2,8 @@
 
 import { Button, Tag } from 'primevue';
 import { useTransactions } from '@/Composables/transactions';
+import PickAndDropDetailsModal from './pickanddrop-tab-partials/PickAndDropDetailsModal.vue';
+import { ref } from 'vue';
 
 defineProps({
     pickAndDrops: Array
@@ -13,6 +15,7 @@ const {
     formatTime
 } = useTransactions();
 
+const isShowDetailsModal = ref(false);
 
 </script>
 
@@ -29,13 +32,13 @@ const {
 
         <!-- Pick & Drop List -->
         <div v-else class="space-y-2">
-            <div v-for="pickAndDrop in pickAndDrops" :key="pickAndDrop.id" class="bg-white dark:bg-zinc-900 rounded-lg shadow dark:shadow-lg hover:shadow-lg dark:hover:shadow-xl transition-shadow border dark:border-zinc-800 overflow-hidden">
-                <!-- Compact Header -->
-                <div class="px-3 py-2 flex items-center justify-between">
-                    <div class="flex items-center gap-2 flex-1 min-w-0">
-                        <Tag :value="pickAndDrop.status.replace('_', ' ')" :severity="getStatusSeverity(pickAndDrop.status)" class="flex-shrink-0" />
+            <div @click="isShowDetailsModal = true" v-for="pickAndDrop in pickAndDrops" :key="pickAndDrop.id" class="bg-white dark:bg-zinc-900 rounded-lg shadow dark:shadow-lg hover:shadow-md dark:hover:shadow-lg transition-shadow border dark:border-zinc-800 overflow-hidden">
+                <!-- Header -->
+                <div class="px-3 py-2.5 flex items-start justify-between gap-2">
+                    <div class="flex items-start gap-2 flex-1 min-w-0">
+                        <Tag :value="pickAndDrop.status.replace('_', ' ')" :severity="getStatusSeverity(pickAndDrop.status)" class="flex-shrink-0 text-xs" />
                         <div class="min-w-0 flex-1">
-                            <p class="text-sm font-medium text-zinc-900 dark:text-white truncate">
+                            <p class="text-xs font-semibold text-zinc-900 dark:text-white truncate">
                                 {{ pickAndDrop.sender_full_name }} → {{ pickAndDrop.receiver_full_name }}
                             </p>
                             <p class="text-xs text-zinc-500 dark:text-zinc-400">{{ formatDate(pickAndDrop.created_at) }}</p>
@@ -44,24 +47,19 @@ const {
                     <span class="text-sm flex-shrink-0">{{ pickAndDrop.payment_method === 'Cash on Delivery' ? '💵' : '📱' }}</span>
                 </div>
 
-                <!-- Summary Details -->
-                <div class="px-4 py-2 bg-zinc-50 dark:bg-zinc-800/50 border-t border-zinc-200 dark:border-zinc-800">
-                    <div class="grid grid-cols-2 gap-3 text-sm">
-                        <div>
-                            <p class="text-xs text-zinc-600 dark:text-zinc-400 font-semibold uppercase tracking-wide mb-1">From</p>
-                            <p class="text-zinc-900 dark:text-zinc-200 truncate">{{ pickAndDrop.sender_location }}</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-zinc-600 dark:text-zinc-400 font-semibold uppercase tracking-wide mb-1">To</p>
-                            <p class="text-zinc-900 dark:text-zinc-200 truncate">{{ pickAndDrop.receiver_location }}</p>
-                        </div>
+                <!-- Details Row -->
+                <div class="px-3 py-2 bg-zinc-50 dark:bg-zinc-800/30 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between gap-3 text-xs">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-zinc-600 dark:text-zinc-400 truncate">From: {{ pickAndDrop.sender_location }}</p>
                     </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="px-4 py-2 border-t border-zinc-200 dark:border-zinc-800 flex gap-2 justify-end">
-                    <Button label="View Details" size="small" icon="pi pi-arrow-right" iconPos="right" />
-                    <Button label="Edit" size="small" severity="secondary" icon="pi pi-pencil" />
+                    <div class="flex-1 min-w-0 text-right">
+                        <p class="text-zinc-600 dark:text-zinc-400 truncate">To: {{ pickAndDrop.receiver_location }}</p>
+                    </div>
+                    <PickAndDropDetailsModal 
+                        :pick-and-drop="pickAndDrop"
+                        :show="isShowDetailsModal"
+                        @close="isShowDetailsModal = false"
+                    />
                 </div>
             </div>
         </div>
