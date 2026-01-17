@@ -14,11 +14,11 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function () {
 
     // user transactions routes
     Route::get('/transactions', [App\Http\Controllers\UserTransactionController::class, 'index'])->name('transaction.index');
+
+    // status routes
+    Route::get('/status', [App\Http\Controllers\StatusController::class, 'index'])->name('status.index');
 });
 
 require __DIR__.'/auth.php';

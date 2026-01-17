@@ -3,7 +3,7 @@
 import Modal from '@/Components/Modal.vue';
 import Container from '@/Components/Container.vue';
 import { useTransactions } from '@/Composables/transactions';
-import { Tag } from 'primevue';
+import { Tag, Button } from 'primevue';
 
 defineProps({
     pickAndDrop: Object,
@@ -29,8 +29,17 @@ const { getStatusSeverity, formatDate } = useTransactions();
         <Container>
             <template #header>
                 <div class="flex items-center justify-between">
-                    <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">Pick & Drop Details</h3>
-                    <Tag :value="pickAndDrop.status.replace('_', ' ')" :severity="getStatusSeverity(pickAndDrop.status)" />
+                    <header>
+                        <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">Pick & Drop Details</h3>
+                        <div class="text-xs mt-2">
+                            <Tag :value="pickAndDrop.status.replace('_', ' ')" :severity="getStatusSeverity(pickAndDrop.status)" />
+                        </div>
+                    </header>
+                    <div class="flex gap-2 items-center">
+                        <Button severity="secondary" variant="outlined" @click="$emit('close')">
+                            <span class="text-xs">Close</span>
+                        </Button>
+                    </div>
                 </div>
             </template>
             
