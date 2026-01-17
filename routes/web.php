@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
 
     // status routes
     Route::get('/status', [App\Http\Controllers\StatusController::class, 'index'])->name('status.index');
+
+    // inbox routes
+    Route::get('/inbox', [App\Http\Controllers\InboxController::class, 'index'])->name('inbox.index');
 });
 
 require __DIR__.'/auth.php';
