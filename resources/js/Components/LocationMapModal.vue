@@ -28,7 +28,9 @@ const parsedCoordinates = computed(() => {
         :show="show"
         @close="$emit('close')"
     >
-        <Map>
+        <Map
+            :coordinates="parsedCoordinates"
+        >
             <ol-vector-layer>
                 <ol-source-vector />
 

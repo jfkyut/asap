@@ -1,12 +1,21 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, toRefs } from 'vue';
 
-const center = ref([119.28242077814251, 10.5183862756608]);
+const props = defineProps({
+    coordinates: {
+        type: Array,
+        default: () => null,
+    }
+})
+
+const { coordinates } = toRefs(props);
+
+const center = ref(coordinates.value || [119.28242077814251, 10.5183862756608]);
 const projection = ref('EPSG:4326');
 const zoom = ref(10);
 
 const layerList = ref([]);
-const olMap = ref(null);
+const map = ref(null);
 
 const jawgLayer = ref(null);
 const satellite = ref(null);
@@ -20,16 +29,12 @@ onMounted(() => {
     layerList.value.push(terrain.value.tileLayer);
 
     // Setup map click handler
-    if (olMap.value?.map) {
-        olMap.value.map.on('click', (event) => {
+    if (map.value?.map) {
+        map.value.map.on('click', (event) => {
             emit('mapClick', event.coordinate);
         });
     }
 })
-
-defineExpose({
-    olMap,
-});
 
 </script>
 
