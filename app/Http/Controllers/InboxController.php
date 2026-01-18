@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Message\Message;
 
 class InboxController extends Controller
 {
@@ -11,7 +12,24 @@ class InboxController extends Controller
      */
     public function index()
     {
-        return inertia('Inbox/Inbox');
+        $messages = Message::forUser(auth()->id())
+            ->latest()
+            ->with(['sender'])
+            ->get()
+            ->map(function ($message) {
+                return [
+                    'id' => $message->id,
+                    'sender' => $message->sender->name,
+                    'preview' => $message->preview,
+                    'timestamp' => $message->getFormattedTimestamp(),
+                    'unread' => !$message->is_read,
+                    'type' => $message->type,
+                ];
+            });
+
+        return inertia('Inbox/Inbox', [
+            'messages' => $messages,
+        ]);
     }
 
     /**
@@ -60,5 +78,12 @@ class InboxController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function markAsRead(Message $message)
+    {
+        $message->markAsRead();
+
+        return back();
     }
 }
