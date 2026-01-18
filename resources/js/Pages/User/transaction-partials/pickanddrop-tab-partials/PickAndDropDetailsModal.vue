@@ -4,6 +4,9 @@ import Modal from '@/Components/Modal.vue';
 import Container from '@/Components/Container.vue';
 import { useTransactions } from '@/Composables/transactions';
 import { Tag, Button } from 'primevue';
+import { ref } from 'vue';
+import SenderLocationModal from './pick-and-drop-details-modal-partials/SenderLocationModal.vue';
+import ReceiverLocationModal from './pick-and-drop-details-modal-partials/ReceiverLocationModal.vue';
 
 defineProps({
     pickAndDrop: Object,
@@ -14,6 +17,7 @@ defineProps({
 })
 
 const { getStatusSeverity, formatDate } = useTransactions();
+
 
 </script>
 
@@ -61,6 +65,11 @@ const { getStatusSeverity, formatDate } = useTransactions();
                                 <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Location</p>
                                 <p class="text-sm text-zinc-900 dark:text-white">{{ pickAndDrop.sender_location }}</p>
                             </div>
+                            <div v-if="pickAndDrop.sender_location_coordinates">
+                                <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Coordinates</p>
+                                <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-900/50 p-2 rounded mb-3">{{ pickAndDrop.sender_location_coordinates }}</p>
+                                <SenderLocationModal :pick-and-drop="pickAndDrop" />
+                            </div>
                             <div v-if="pickAndDrop.sender_note">
                                 <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Note</p>
                                 <p class="text-sm text-zinc-900 dark:text-white italic">{{ pickAndDrop.sender_note }}</p>
@@ -89,6 +98,11 @@ const { getStatusSeverity, formatDate } = useTransactions();
                             <div>
                                 <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Location</p>
                                 <p class="text-sm text-zinc-900 dark:text-white">{{ pickAndDrop.receiver_location }}</p>
+                            </div>
+                            <div v-if="pickAndDrop.receiver_location_coordinates">
+                                <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Coordinates</p>
+                                <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-900/50 p-2 rounded mb-3">{{ pickAndDrop.receiver_location_coordinates }}</p>
+                                <ReceiverLocationModal :pick-and-drop="pickAndDrop" />
                             </div>
                             <div v-if="pickAndDrop.receiver_note">
                                 <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Note</p>

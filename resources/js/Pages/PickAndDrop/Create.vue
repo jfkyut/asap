@@ -25,10 +25,12 @@ const isLoading = ref(false);
 
 const form = useForm({
     sender_location: '',
+    sender_location_coordinates: null,
     sender_full_name: '',
     sender_phone: '',
     sender_note: '',
     receiver_location: '',
+    receiver_location_coordinates: null,
     receiver_full_name: '',
     receiver_phone: '',
     receiver_note: '',
