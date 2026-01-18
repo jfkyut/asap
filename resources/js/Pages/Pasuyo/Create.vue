@@ -27,6 +27,7 @@ const isLoading = ref(false);
 
 const form = useForm({
     location: '',
+    location_coordinates: null,
     full_name: '',
     phone: '',
     note: '',

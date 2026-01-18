@@ -1,6 +1,7 @@
 <script setup>
 
 import { FloatLabel, InputText, Textarea, Select } from 'primevue';
+import AddLocationModal from '@/Components/AddLocationModal.vue';
 
 defineProps({
     form: Object,
@@ -23,6 +24,10 @@ defineProps({
                 id="receiver_location" 
             />
             <label for="receiver_location">Receiver Location</label>
+        </FloatLabel>
+        <FloatLabel variant="on">
+            <AddLocationModal :form="form" item-key="receiver_location_coordinates" />
+            <label for="receiver_location">Select location from map</label>
         </FloatLabel>
         <FloatLabel variant="on">
             <InputText 

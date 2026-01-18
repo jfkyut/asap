@@ -15,7 +15,7 @@ const {
     formatTime
 } = useTransactions();
 
-const isShowDetailsModal = ref(false);
+const selectedPasuyoId = ref(null);
 
 </script>
 
@@ -32,7 +32,7 @@ const isShowDetailsModal = ref(false);
 
         <!-- Transactions List -->
         <div v-else class="space-y-2">
-            <div @click="isShowDetailsModal = true" v-for="pasuyo in pasuyos" :key="pasuyo.id" class="bg-white dark:bg-zinc-900 rounded-lg shadow dark:shadow-lg hover:shadow-md dark:hover:shadow-lg transition-shadow border dark:border-zinc-800 overflow-hidden">
+            <div @click="selectedPasuyoId = pasuyo.id" v-for="pasuyo in pasuyos" :key="pasuyo.id" class="bg-white dark:bg-zinc-900 rounded-lg shadow dark:shadow-lg hover:shadow-md dark:hover:shadow-lg transition-shadow border dark:border-zinc-800 overflow-hidden">
                 <!-- Header -->
                 <div class="px-3 py-2.5 flex items-start justify-between gap-2">
                     <div class="flex items-start gap-2 flex-1 min-w-0">
@@ -57,8 +57,8 @@ const isShowDetailsModal = ref(false);
                     </div>
                     <PasuyoDetailsModal 
                         :pasuyo="pasuyo" 
-                        :show="isShowDetailsModal" 
-                        @close="isShowDetailsModal = false"
+                        :show="selectedPasuyoId === pasuyo.id" 
+                        @close="selectedPasuyoId = null"
                     />
                 </div>
             </div>

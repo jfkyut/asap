@@ -6,21 +6,40 @@ const projection = ref('EPSG:4326');
 const zoom = ref(10);
 
 const layerList = ref([]);
+const olMap = ref(null);
 
 const jawgLayer = ref(null);
 const satellite = ref(null);
 const terrain = ref(null);
 
+const emit = defineEmits(['mapClick']);
+
 onMounted(() => {
     layerList.value.push(jawgLayer.value.tileLayer);
     layerList.value.push(satellite.value.tileLayer);
     layerList.value.push(terrain.value.tileLayer);
+
+    // Setup map click handler
+    if (olMap.value?.map) {
+        olMap.value.map.on('click', (event) => {
+            emit('mapClick', event.coordinate);
+        });
+    }
 })
+
+defineExpose({
+    olMap,
+});
 
 </script>
 
 <template>
-    <OlMap ref="map" style="min-width: 150px; height: 400px;">
+    <OlMap 
+        ref="map" 
+        style="min-width: 150px; height: 400px;"
+        :loadTilesWhileAnimating="true"
+        :loadTilesWhileInteracting="true"
+    >
         <OlView 
             ref="view"
             :center="center" 

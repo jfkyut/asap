@@ -5,6 +5,7 @@ import Container from '@/Components/Container.vue';
 import { useTransactions } from '@/Composables/transactions';
 import { Button, Tag } from 'primevue';
 import { ref } from 'vue';
+import LocationMapModal from '@/Components/LocationMapModal.vue';
 
 defineProps({
     pasuyo: Object,
@@ -15,6 +16,8 @@ defineProps({
 })
 
 const { getStatusSeverity, formatDate } = useTransactions();
+
+const isShowLocationMapModal = ref(false);
 
 </script>
 
@@ -62,9 +65,30 @@ const { getStatusSeverity, formatDate } = useTransactions();
                     </div>
 
                     <!-- Location Section -->
-                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 space-y-3">
                         <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200 mb-3">📍 Location</h4>
-                        <p class="text-sm text-zinc-900 dark:text-white">{{ pasuyo.location }}</p>
+                        <div class="space-y-2.5">
+                            <div>
+                                <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Area</p>
+                                <p class="text-sm text-zinc-900 dark:text-white">{{ pasuyo.location }}</p>
+                            </div>
+                            <div v-if="pasuyo.location_coordinates">
+                                <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Coordinates</p>
+                                <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-900/50 p-2 rounded mb-3">{{ pasuyo.location_coordinates }}</p>
+                                <Button 
+                                    @click="isShowLocationMapModal = true"
+                                    label="View on Map" 
+                                    severity="info" 
+                                    size="small"
+                                    variant="outlined"
+                                />
+                                <LocationMapModal 
+                                    :coordinates="pasuyo.location_coordinates" 
+                                    :show="isShowLocationMapModal" 
+                                    @close="isShowLocationMapModal = false"
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Item & Budget Section -->

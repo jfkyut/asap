@@ -32,6 +32,7 @@ const form = useForm({
     receiver_full_name: '',
     receiver_phone: '',
     receiver_note: '',
+    item_description: '',
     status: 'pending',
     payment_method: '',
 })

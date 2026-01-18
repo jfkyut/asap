@@ -50,10 +50,10 @@ defineProps({
                     />
                     <label for="location">Location</label>
                 </FloatLabel>
-                <!-- <FloatLabel variant="on">
-                    <AddLocationModal :form="form" />
+                <FloatLabel variant="on">
+                    <AddLocationModal :form="form" item-key="location_coordinates" />
                     <label for="location">Select location from map</label>
-                </FloatLabel> -->
+                </FloatLabel>
                 <FloatLabel variant="on">
                     <Textarea 
                         id="note" 
