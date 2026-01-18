@@ -5,7 +5,7 @@ import Container from '@/Components/Container.vue';
 import { useTransactions } from '@/Composables/transactions';
 import { Button, Tag } from 'primevue';
 import { ref } from 'vue';
-import LocationMapModal from '@/Components/LocationMapModal.vue';
+import LocationModal from './LocationModal.vue';
 
 defineProps({
     pasuyo: Object,
@@ -16,8 +16,6 @@ defineProps({
 })
 
 const { getStatusSeverity, formatDate } = useTransactions();
-
-const isShowLocationMapModal = ref(false);
 
 </script>
 
@@ -75,18 +73,7 @@ const isShowLocationMapModal = ref(false);
                             <div v-if="pasuyo.location_coordinates">
                                 <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Coordinates</p>
                                 <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-900/50 p-2 rounded mb-3">{{ pasuyo.location_coordinates }}</p>
-                                <Button 
-                                    @click="isShowLocationMapModal = true"
-                                    label="View on Map" 
-                                    severity="info" 
-                                    size="small"
-                                    variant="outlined"
-                                />
-                                <LocationMapModal 
-                                    :coordinates="pasuyo.location_coordinates" 
-                                    :show="isShowLocationMapModal" 
-                                    @close="isShowLocationMapModal = false"
-                                />
+                                <LocationModal :pasuyo="pasuyo" />
                             </div>
                         </div>
                     </div>
