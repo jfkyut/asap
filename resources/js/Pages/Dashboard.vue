@@ -31,7 +31,7 @@ defineProps({
         <div class="sm:p-6 max-w-7xl mx-auto px-2 py-2 sm:py-6">
             <!-- Request Status Overview -->
             <div class="mb-6">
-                <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">Your Requests</h3>
+                <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">Transactions</h3>
                 <div class="flex gap-2 overflow-x-auto pb-2 -mx-2 px-2 sm:mx-0 sm:px-0">
                     <!-- Pending -->
                     <div @click="router.get(route('status.index', { status: 'pending' }))" class="flex-shrink-0 w-24 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/40 dark:to-yellow-900/20 rounded-lg p-3 border-l-4 border-yellow-500">
