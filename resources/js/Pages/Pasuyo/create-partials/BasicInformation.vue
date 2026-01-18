@@ -48,7 +48,7 @@ defineProps({
                         ]"
                         required
                     />
-                    <label for="location">Select location from map</label>
+                    <label for="location">Location</label>
                 </FloatLabel>
                 <!-- <FloatLabel variant="on">
                     <AddLocationModal :form="form" />
