@@ -13,17 +13,24 @@ const isShowModal = ref(false);
 </script>
 
 <template>
-    <Button 
+    <Button
         @click="isShowModal = true"
-        label="View on Map" 
-        severity="info" 
+        label="View on Map"
+        severity="info"
         size="small"
         variant="outlined"
     />
 
-    <LocationMapModal 
-        :coordinates="pickAndDrop?.sender_location_coordinates" 
-        :show="isShowModal" 
+    <LocationMapModal
+        :coordinates="[
+            pickAndDrop?.sender_location_coordinates,
+            pickAndDrop?.receiver_location_coordinates
+        ]"
+        :labels="[
+            'Pick-up Location',
+            'Drop Location'
+        ]"
+        :show="isShowModal"
         @close="isShowModal = false"
     />
 </template>

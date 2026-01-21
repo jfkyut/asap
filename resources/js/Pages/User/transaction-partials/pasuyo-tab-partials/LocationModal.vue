@@ -13,16 +13,21 @@ const isShowModal = ref(false);
 </script>
 
 <template>
-    <Button 
+    <Button
         @click="isShowModal = true"
-        label="View on Map" 
-        severity="info" 
+        label="View on Map"
+        severity="info"
         size="small"
         variant="outlined"
     />
-    <LocationMapModal 
-        :coordinates="pasuyo.location_coordinates" 
-        :show="isShowModal" 
+    <LocationMapModal
+        :coordinates="[
+            pasuyo.location_coordinates
+        ]"
+        :show="isShowModal"
+        :labels="[
+            'Pasuyo Location'
+        ]"
         @close="isShowModal = false"
     />
 </template>
