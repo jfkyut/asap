@@ -2,8 +2,9 @@
 
 import Modal from './Modal.vue';
 import Map from './Map.vue';
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, toRefs } from 'vue';
 import Overlay from 'ol/Overlay';
+import axios from 'axios';
 
 const props = defineProps({
     coordinates: {
@@ -20,12 +21,18 @@ const props = defineProps({
     },
 })
 
+const { coordinates, show, labels } = toRefs(props);
+
 const vectorSource = ref(null);
 const visibleLabels = ref(new Set());
+const isLoadingRoute = ref(false);
+const routeCoordinates = ref([]);
+
+const OPEN_ROUTE_SERVICE_KEY = import.meta.env.VITE_OPEN_ROUTE_SERVICE_KEY || '';
 
 const parsedCoordinates = computed(() => {
-    if (!props.coordinates || props.coordinates.length === 0) return [];
-    return props.coordinates.map(coord => {
+    if (!coordinates.value || coordinates.value.length === 0) return [];
+    return coordinates.value.map(coord => {
         if (typeof coord === 'string') {
             return coord.split(',').map(c => parseFloat(c.trim()));
         }
@@ -33,7 +40,7 @@ const parsedCoordinates = computed(() => {
     });
 })
 
-watch(() => props.show, (newVal) => {
+watch(() => show.value, (newVal) => {
     if (newVal) {
         // Show all labels by default when modal opens
         visibleLabels.value = new Set(parsedCoordinates.value.map((_, i) => i));
@@ -54,6 +61,42 @@ const isLabelVisible = (index) => {
     return visibleLabels.value.has(index);
 }
 
+watch(show, (show) => {
+    if (show) {
+        isLoadingRoute.value = true;
+
+        // If there are exactly two coordinates, fetch route data
+        if (parsedCoordinates.value.length === 2) {
+            const [start, end] = parsedCoordinates.value;
+            axios.post('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
+                coordinates: [start, end]
+            }, {
+                headers: {
+                    'Authorization': OPEN_ROUTE_SERVICE_KEY,
+                    'Content-Type': 'application/json',
+                }
+            }).then(response => {
+                const routeGeoJSON = response.data;
+                // Extract route coordinates from the geometry
+                if (routeGeoJSON.features && routeGeoJSON.features.length > 0) {
+                    const geometry = routeGeoJSON.features[0].geometry;
+                    if (geometry.type === 'LineString') {
+                        routeCoordinates.value = geometry.coordinates;
+                    }
+                }
+                console.log(routeGeoJSON);
+
+            }).catch(error => {
+                console.error('Error fetching route data:', error);
+            }).finally(() => {
+                isLoadingRoute.value = false;
+            });
+        } else {
+            isLoadingRoute.value = false;
+        }
+    }
+})
+
 </script>
 
 <template>
@@ -67,6 +110,15 @@ const isLabelVisible = (index) => {
         >
             <ol-vector-layer>
                 <ol-source-vector ref="vectorSource">
+                    <!-- Route Line -->
+                    <ol-feature v-if="routeCoordinates.length > 0">
+                        <ol-geom-line-string :coordinates="routeCoordinates" />
+                        <ol-style>
+                            <ol-style-stroke color="#3b82f6" :width="3" />
+                        </ol-style>
+                    </ol-feature>
+
+                    <!-- Location Points -->
                     <ol-feature
                         v-for="(coordinates, index) in parsedCoordinates"
                         :key="index"
