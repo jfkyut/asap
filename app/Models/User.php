@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Pasuyo\Pasuyo;
 use App\Models\PickAndDrop\PickAndDrop;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -58,5 +58,10 @@ class User extends Authenticatable
     public function pickAndDrops()
     {
         return $this->hasMany(PickAndDrop::class);
+    }
+
+    public function deliveries()
+    {
+        return $this->hasMany(\App\Models\Delivery\Delivery::class);
     }
 }
