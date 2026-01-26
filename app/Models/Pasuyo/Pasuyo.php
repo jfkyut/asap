@@ -39,6 +39,6 @@ class Pasuyo extends Model
 
     public function delivery()
     {
-        return $this->hasOne(\App\Models\Delivery\Delivery::class);
+        return $this->hasOne(\App\Models\Delivery\Delivery::class, 'pasuyo_id');
     }
 }

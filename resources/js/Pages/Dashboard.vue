@@ -21,7 +21,7 @@ defineProps({
 
         <div class="border border-teal-500 dark:border-teal-800 p-2 rounded flex justify-between items-center mb-6 bg-teal-50 dark:bg-teal-900/20">
             <div class="text-sm capitalize font-bold">
-                Hello, {{ $page.props.auth.user.name }}! 
+                Hello, {{ $page.props.auth.user.name }}!
             </div>
             <div>
                 <ApplicationLogo class="w-10" />
@@ -76,6 +76,17 @@ defineProps({
                             <p class="text-lg font-bold text-zinc-900 dark:text-white">{{ counts.completed }}</p>
                         </div>
                     </div>
+
+                    <!-- cancelled -->
+                    <div @click="router.get(route('status.index', { status: 'cancelled' }))" class="flex-shrink-0 w-24 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/40 dark:to-red-900/20 rounded-lg p-3 border-l-4 border-red-500">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
+                                <i class="ri-close-circle-line"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-red-700 dark:text-red-400 mb-1">Cancelled</p>
+                            <p class="text-lg font-bold text-zinc-900 dark:text-white">{{ counts.cancelled }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -83,13 +94,13 @@ defineProps({
                 <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
                     What You Can Do
                 </h3>
-                
+
                 <!-- Core Systems Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <!-- System 1 -->
                     <div @click="router.get(route('pasuyo.create'))" class="group relative overflow-hidden rounded-lg border-2 border-blue-400 dark:border-blue-600 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/50 p-4 hover:shadow-lg transition-all duration-300 cursor-pointer">
                         <div class="absolute top-0 right-0 w-16 h-16 bg-blue-200 dark:bg-blue-700 rounded-full -mr-6 -mt-6 opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                        
+
                         <div class="relative z-10">
                             <div class="flex items-center mb-2">
                                 <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-white text-sm mr-2 flex-shrink-0">
@@ -99,11 +110,11 @@ defineProps({
                                     Pasuyo
                                 </h4>
                             </div>
-                            
+
                             <p class="text-zinc-700 dark:text-zinc-300 mb-2 text-xs leading-tight">
                                 Request errands from a rider.
                             </p>
-                            
+
                             <div class="flex items-center text-blue-600 dark:text-blue-400 font-semibold text-xs hover:translate-x-1 transition-transform">
                                 Request
                                 <span class="ml-1">→</span>
@@ -114,7 +125,7 @@ defineProps({
                     <!-- System 2 -->
                     <div @click="router.get(route('pick-and-drop.create'))" class="group relative overflow-hidden rounded-lg border-2 border-purple-400 dark:border-purple-600 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/50 p-4 hover:shadow-lg transition-all duration-300 cursor-pointer">
                         <div class="absolute top-0 right-0 w-16 h-16 bg-purple-200 dark:bg-purple-700 rounded-full -mr-6 -mt-6 opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                        
+
                         <div class="relative z-10">
                             <div class="flex items-center mb-2">
                                 <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center text-white text-sm mr-2 flex-shrink-0">
@@ -124,11 +135,11 @@ defineProps({
                                     Pick & Drop
                                 </h4>
                             </div>
-                            
+
                             <p class="text-zinc-700 dark:text-zinc-300 mb-2 text-xs leading-tight">
                                 Same-day delivery service.
                             </p>
-                            
+
                             <div class="flex items-center text-purple-600 dark:text-purple-400 font-semibold text-xs hover:translate-x-1 transition-transform">
                                 Request
                                 <span class="ml-1">→</span>

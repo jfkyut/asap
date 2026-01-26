@@ -7,6 +7,7 @@ import { Tag, Button } from 'primevue';
 import { ref } from 'vue';
 import LocationRouteModal from './pick-and-drop-details-modal-partials/LocationRouteModal.vue';
 import ReceiverLocationModal from './pick-and-drop-details-modal-partials/ReceiverLocationModal.vue';
+import TrackingModal from '@/Components/TrackingModal.vue';
 
 defineProps({
     pickAndDrop: Object,
@@ -123,6 +124,9 @@ const { getStatusSeverity, formatDate } = useTransactions();
                         <p class="text-sm text-zinc-900 dark:text-white">{{ formatDate(pickAndDrop.created_at) }}</p>
                     </div>
                 </div>
+            </template>
+            <template #footer>
+                <TrackingModal :delivery="pickAndDrop.delivery" />
             </template>
         </Container>
     </Modal>

@@ -44,7 +44,7 @@ const isShowModal = ref(false);
             </template>
             <template #body>
                 <div class="whitespace-pre-wrap">
-                    <Timeline :value="delivery?.trackings">
+                    <Timeline v-if="delivery?.trackings?.length > 0" :value="delivery?.trackings">
                         <template #opposite="slotProps">
                             <small class="text-surface-500 dark:text-surface-400">
                                 {{ slotProps.item?.created_at }}
@@ -56,6 +56,10 @@ const isShowModal = ref(false);
                             </small>
                         </template>
                     </Timeline>
+                    <div v-else class="flex flex-col items-center justify-center py-12">
+                        <i class="ri-inbox-line text-4xl text-surface-300 dark:text-surface-600 mb-3"></i>
+                        <p class="text-surface-500 dark:text-surface-400">No trackings available</p>
+                    </div>
                 </div>
             </template>
         </Container>

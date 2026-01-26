@@ -24,7 +24,7 @@ class Delivery extends Model
         return $this->belongsTo(\App\Models\PickAndDrop\PickAndDrop::class);
     }
 
-    public function user()
+    public function rider()
     {
         return $this->belongsTo(\App\Models\User::class);
     }
