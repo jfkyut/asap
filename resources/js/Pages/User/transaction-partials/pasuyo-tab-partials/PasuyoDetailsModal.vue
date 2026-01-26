@@ -10,24 +10,26 @@ import TrackingModal from '@/Components/TrackingModal.vue';
 
 defineProps({
     pasuyo: Object,
-    show: {
-        type: Boolean,
-        default: false,
-    }
 })
 
 const { getStatusSeverity, formatDate } = useTransactions();
 
+const isShowModal = ref(false);
+
 </script>
 
 <template>
-    <button class="flex-shrink-0 text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300">
-        →
-    </button>
+    <Button
+        @click="isShowModal = true"
+        size="small"
+        severity="secondary"
+        variant="outlined"
+        icon="ri-arrow-right-line"
+    />
 
     <Modal
-        :show="show"
-        @close="$emit('close')"
+        :show="isShowModal"
+        @close="isShowModal = false"
     >
         <Container>
             <template #header>
@@ -113,9 +115,9 @@ const { getStatusSeverity, formatDate } = useTransactions();
                     </div>
                 </div>
             </template>
-            <template #footer>
+            <!-- <template #footer>
                 <TrackingModal :delivery="pasuyo.delivery" />
-            </template>
+            </template> -->
         </Container>
     </Modal>
 </template>

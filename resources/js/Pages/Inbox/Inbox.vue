@@ -61,7 +61,7 @@ const updateMessageAsRead = (messageId) => {
             Inbox
         </template>
 
-        <div class="px-4 py-4">
+        <div>
             <!-- Search Bar -->
             <!-- <div class="mb-4">
                 <InputGroup>

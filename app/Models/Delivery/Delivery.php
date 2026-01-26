@@ -26,7 +26,7 @@ class Delivery extends Model
 
     public function rider()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(\App\Models\User::class, 'user_id');
     }
 
     public function trackings()

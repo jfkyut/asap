@@ -41,12 +41,20 @@ class DashboardController extends Controller
                                       ->where('status', 'completed')
                                       ->count());
 
+        $cancelledCount = (Pasuyo::where('user_id', auth()->id())
+                                 ->where('status', 'cancelled')
+                                 ->count()) +
+                          (PickAndDrop::where('user_id', auth()->id())
+                                      ->where('status', 'cancelled')
+                                      ->count());
+
         return inertia('Dashboard', [
             'counts' => [
                 'pending' => $pendingCount,
                 'accepted' => $acceptedCount,
                 'in_progress' => $inProgressCount,
                 'completed' => $completedCount,
+                'cancelled' => $cancelledCount,
             ]
         ]);
     }

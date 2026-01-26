@@ -31,10 +31,7 @@ class UserTransactionController extends Controller
                                     ->get();
 
         return inertia('User/Transactions', [
-            'transactions' => [
-                'pasuyos' => $payusos,
-                'pickAndDrops' => $pickAndDrops
-            ]
+            'transactions' => $payusos->concat($pickAndDrops)->sortByDesc('created_at')->values(),
         ]);
     }
 
