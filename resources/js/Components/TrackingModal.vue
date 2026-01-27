@@ -4,12 +4,15 @@ import { Button, Timeline } from 'primevue';
 import Modal from '@/Components/Modal.vue';
 import Container from '@/Components/Container.vue';
 import { toRefs, ref } from 'vue';
+import { useCommon } from '@/Composables/common';
 
 const props = defineProps({
     delivery: Object,
 });
 
 const { delivery } = toRefs(props);
+
+const { formatDate } = useCommon();
 
 const isShowModal = ref(false);
 
@@ -46,7 +49,7 @@ const isShowModal = ref(false);
                     <Timeline v-if="delivery?.trackings?.length > 0" :value="delivery?.trackings">
                         <template #opposite="slotProps">
                             <small class="text-surface-500 dark:text-surface-400">
-                                {{ slotProps.item?.created_at }}
+                                {{ formatDate(slotProps.item?.created_at, 'MMM dd, yyyy hh:mm A') }}
                             </small>
                         </template>
                         <template #content="slotProps">

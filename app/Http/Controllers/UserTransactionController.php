@@ -13,22 +13,39 @@ class UserTransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $payusos = Pasuyo::where('user_id', $request->user()->id)
-                         ->with([
-                            'attachments',
-                            'delivery.trackings',
-                            'delivery.rider'
-                         ])
-                         ->latest()
-                         ->get();
+        $pasuyoQuery = Pasuyo::query();
+        $pickAndDropQuery = PickAndDrop::query();
 
-        $pickAndDrops = PickAndDrop::where('user_id', $request->user()->id)
-                                    ->with([
-                                        'delivery.trackings',
-                                        'delivery.rider'
-                                    ])
-                                    ->latest()
-                                    ->get();
+        $pasuyoQuery->where(function ($pasuyoQuery) use  ($request) {
+            $pasuyoQuery->where('user_id', $request->user()->id);
+
+            if ($request->has('status') && !empty($request->status) && $request->status !== 'all') {
+                $pasuyoQuery->where('status', $request->status);
+            }
+        });
+
+        $pickAndDropQuery->where(function ($pickAndDropQuery) use  ($request) {
+            $pickAndDropQuery->where('user_id', $request->user()->id);
+
+            if ($request->has('status') && !empty($request->status) && $request->status !== 'all') {
+                $pickAndDropQuery->where('status', $request->status);
+            }
+        });
+
+        $payusos = $pasuyoQuery->with([
+                                    'attachments',
+                                    'delivery.trackings',
+                                    'delivery.rider'
+                                ])
+                                ->latest()
+                                ->get();
+
+        $pickAndDrops = $pickAndDropQuery->with([
+                                            'delivery.trackings',
+                                            'delivery.rider'
+                                        ])
+                                        ->latest()
+                                        ->get();
 
         return inertia('User/Transactions', [
             'transactions' => $payusos->concat($pickAndDrops)->sortByDesc('created_at')->values(),

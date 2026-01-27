@@ -42,7 +42,7 @@ const isShowModal = ref(false);
                         </div>
                     </header>
                     <div class="flex gap-2 items-center">
-                        <Button severity="secondary" variant="outlined" @click="$emit('close')">
+                        <Button severity="secondary" variant="outlined" @click="isShowModal = false">
                             <span class="text-xs">Close</span>
                         </Button>
                     </div>
