@@ -28,7 +28,7 @@ defineProps({
             </div>
         </div>
 
-        <div class="sm:p-6 max-w-7xl mx-auto px-2 py-2 sm:py-6">
+        <div class="sm:p-6 max-w-7xl mx-auto sm:py-6">
             <!-- Request Status Overview -->
             <div class="mb-6">
                 <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">Transactions</h3>

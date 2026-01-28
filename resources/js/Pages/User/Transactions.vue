@@ -70,7 +70,7 @@ const getStatusColor = (status) => {
 </script>
 
 <template>
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :has-padding="false">
         <Head title="My Transactions" />
 
         <template #header>
