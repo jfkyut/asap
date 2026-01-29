@@ -12,16 +12,16 @@ defineProps({
 <template>
     <div class="space-y-4 w-full">
         <FloatLabel variant="on">
-            <Select 
-                class="w-full" 
+            <Select
+                class="w-full"
                 v-model="form.receiver_location"
                 :options="[
                     'Barangay Poblacion',
                     'Barangay San Isidro',
-                    'Barangay Agutaya',
+                    'Barangay Alimanguan',
                     'Barangay New Agutaya'
                 ]"
-                id="receiver_location" 
+                id="receiver_location"
             />
             <label for="receiver_location">Receiver Location</label>
         </FloatLabel>
@@ -30,27 +30,27 @@ defineProps({
             <label for="receiver_location">Select location from map</label>
         </FloatLabel>
         <FloatLabel variant="on">
-            <InputText 
-                class="w-full" 
-                v-model="form.receiver_full_name" 
-                id="receiver_full_name" 
+            <InputText
+                class="w-full"
+                v-model="form.receiver_full_name"
+                id="receiver_full_name"
             />
             <label for="receiver_full_name">Full Name</label>
         </FloatLabel>
         <FloatLabel variant="on">
-            <InputText 
-                class="w-full" 
-                v-model="form.receiver_phone" 
-                id="receiver_phone" 
+            <InputText
+                class="w-full"
+                v-model="form.receiver_phone"
+                id="receiver_phone"
             />
             <label for="receiver_phone">Phone Number</label>
         </FloatLabel>
         <FloatLabel variant="on">
-            <Textarea 
-                v-model="form.receiver_note" 
+            <Textarea
+                v-model="form.receiver_note"
                 class="w-full"
-                id="receiver_note" 
-                rows="3" 
+                id="receiver_note"
+                rows="3"
             />
             <label for="receiver_note">Note</label>
         </FloatLabel>

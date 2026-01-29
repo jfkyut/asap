@@ -17,33 +17,33 @@ defineProps({
     <div class="flex flex-col h-auto">
         <div class="dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
             <div class="space-y-2 w-full">
-                
+
                 <FloatLabel variant="on">
-                    <InputText 
-                        id="full_name" 
-                        v-model="form.full_name" 
-                        class="w-full" 
-                        required 
+                    <InputText
+                        id="full_name"
+                        v-model="form.full_name"
+                        class="w-full"
+                        required
                     />
                     <label for="full_name">Full Name</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <InputText 
-                        id="phone" 
-                        v-model="form.phone" 
-                        class="w-full" 
-                        required 
+                    <InputText
+                        id="phone"
+                        v-model="form.phone"
+                        class="w-full"
+                        required
                     />
                     <label for="phone">Phone Number</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <Select 
+                    <Select
                         v-model="form.location"
                         class="w-full"
                         :options="[
                             'Barangay Poblacion',
                             'Barangay San Isidro',
-                            'Barangay Agutaya',
+                            'Barangay Alimanguan',
                             'Barangay New Agutaya'
                         ]"
                         required
@@ -55,10 +55,10 @@ defineProps({
                     <label for="location">Select location from map</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
-                    <Textarea 
-                        id="note" 
-                        v-model="form.note" 
-                        class="w-full" 
+                    <Textarea
+                        id="note"
+                        v-model="form.note"
+                        class="w-full"
                         auto-resize
                     />
                     <label for="note">Note (Optional)</label>
