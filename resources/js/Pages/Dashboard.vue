@@ -67,12 +67,12 @@ defineProps({
                     </div>
 
                     <!-- to pay -->
-                    <div @click="router.get(route('transaction.index', { status: 'to_pay' }))" class="flex-shrink-0 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/40 dark:to-yellow-900/20 rounded-lg p-3 border-l-4 border-yellow-500">
+                    <div @click="router.get(route('transaction.index', { status: 'to_pay' }))" class="flex-shrink-0 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/40 dark:to-orange-900/20 rounded-lg p-3 border-l-4 border-orange-500">
                         <div class="flex flex-col items-center text-center">
-                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs mb-1 flex-shrink-0">
                                 <i class="ri-money-dollar-circle-line"></i>
                             </div>
-                            <p class="text-xs font-semibold text-yellow-700 dark:text-yellow-400 mb-1">To Pay</p>
+                            <p class="text-xs font-semibold text-orange-700 dark:text-orange-400 mb-1">To Pay</p>
                             <p class="text-lg font-bold text-zinc-900 dark:text-white">{{ counts.to_pay }}</p>
                         </div>
                     </div>

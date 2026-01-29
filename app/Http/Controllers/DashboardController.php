@@ -34,6 +34,13 @@ class DashboardController extends Controller
                                        ->where('status', 'in_progress')
                                        ->count());
 
+        $toPayCount = (Pasuyo::where('user_id', auth()->id())
+                             ->where('status', 'to_pay')
+                             ->count()) +
+                       (PickAndDrop::where('user_id', auth()->id())
+                                   ->where('status', 'to_pay')
+                                   ->count());
+
         $completedCount = (Pasuyo::where('user_id', auth()->id())
                                  ->where('status', 'completed')
                                  ->count()) +
@@ -53,6 +60,7 @@ class DashboardController extends Controller
                 'pending' => $pendingCount,
                 'accepted' => $acceptedCount,
                 'in_progress' => $inProgressCount,
+                'to_pay' => $toPayCount,
                 'completed' => $completedCount,
                 'cancelled' => $cancelledCount,
             ]

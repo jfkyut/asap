@@ -34,6 +34,7 @@ const statusTabs = [
     { value: 'pending', label: 'Pending' },
     { value: 'accepted', label: 'Accepted' },
     { value: 'in_progress', label: 'In Progress' },
+    {  value: 'to_pay', label: 'To Pay' },
     { value: 'completed', label: 'Completed' },
     { value: 'cancelled', label: 'Cancelled' },
 ];

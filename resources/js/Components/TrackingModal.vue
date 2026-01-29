@@ -22,7 +22,7 @@ const isShowModal = ref(false);
     <Button
         @click="isShowModal = true"
         size="small"
-        icon="ri-history-line"
+        icon="ri-route-line"
         severity="secondary"
         variant="outlined"
     />
