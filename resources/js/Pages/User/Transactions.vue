@@ -61,6 +61,7 @@ const getStatusColor = (status) => {
         'pending': 'warning',
         'completed': 'success',
         'in_progress': 'info',
+        'to_pay': 'info',
         'cancelled': 'danger'
     };
     return colors[status] || 'secondary';
@@ -186,6 +187,53 @@ const getStatusColor = (status) => {
                                             </div>
                                         </div>
                                     </template>
+
+                                    <!-- Rider Information -->
+                                    <div v-if="transaction?.delivery?.rider" class="p-3 border-t border-zinc-100 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-700/30">
+                                        <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 mb-3">RIDER INFORMATION</p>
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-3 flex-1">
+                                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white text-xs font-semibold">
+                                                    {{ transaction.delivery.rider.name.charAt(0).toUpperCase() }}
+                                                </div>
+                                                <div>
+                                                    <p class="text-xs font-medium text-zinc-900 dark:text-zinc-100">{{ transaction.delivery.rider.name }}</p>
+                                                    <p class="text-xs text-zinc-500 dark:text-zinc-400">Rider</p>
+                                                </div>
+                                            </div>
+                                            <a :href="`tel:${transaction.delivery.rider.phone}`" class="no-underline">
+                                                <Tag
+                                                    :value="transaction.delivery.rider.phone"
+                                                    icon="ri-phone-line"
+                                                    severity="info"
+                                                    class="text-xs cursor-pointer hover:opacity-80 transition-opacity"
+                                                />
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Payment Breakdown -->
+                                    <div class="p-3 border-t border-zinc-100 dark:border-zinc-700 bg-white dark:bg-zinc-800">
+                                        <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 mb-3">PAYMENT DETAILS</p>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-xs text-zinc-600 dark:text-zinc-400">Bill Amount</span>
+                                                <span class="text-xs font-medium text-zinc-900 dark:text-zinc-100">₱{{ transaction?.delivery?.bill_amount ? parseFloat(transaction?.delivery.bill_amount).toFixed(2) : '0.00' }}</span>
+                                            </div>
+                                            <div v-if="transaction?.delivery?.distance_travelled" class="flex justify-between items-center">
+                                                <span class="text-xs text-zinc-600 dark:text-zinc-400">Distance Travelled</span>
+                                                <span class="text-xs font-medium text-zinc-900 dark:text-zinc-100">{{ (transaction?.delivery.distance_travelled / 1000).toFixed(2) }} km</span>
+                                            </div>
+                                            <div v-if="transaction?.delivery?.distance_travelled" class="flex justify-between items-center">
+                                                <span class="text-xs text-zinc-600 dark:text-zinc-400">Travel Fee</span>
+                                                <span class="text-xs font-medium text-zinc-900 dark:text-zinc-100">₱30.00 + ₱15.00/km</span>
+                                            </div>
+                                            <div class="pt-2 border-t border-zinc-200 dark:border-zinc-700 flex justify-between items-center">
+                                                <span class="text-xs font-semibold text-zinc-900 dark:text-zinc-100">Total Payment</span>
+                                                <span class="text-sm font-bold text-emerald-600 dark:text-emerald-400">₱{{ transaction?.delivery?.total_payment ? parseFloat(transaction?.delivery?.total_payment).toFixed(2) : '0.00' }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <!-- Footer with Actions -->
 
