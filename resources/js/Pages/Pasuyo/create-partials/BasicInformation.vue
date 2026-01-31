@@ -61,7 +61,7 @@ defineProps({
                         class="w-full"
                         auto-resize
                     />
-                    <label for="note">Note (Optional)</label>
+                    <label for="note">Note/Purok/Street/Whatever you want (Optional)</label>
                 </FloatLabel>
             </div>
         </div>

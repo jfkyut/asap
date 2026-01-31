@@ -54,7 +54,7 @@ defineProps({
                 id="sender_note"
                 rows="3"
             />
-            <label for="sender_note">Note</label>
+            <label for="sender_note">Note/Purok/Whatever you want (Optional)</label>
         </FloatLabel>
     </div>
 </template>
