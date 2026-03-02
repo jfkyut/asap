@@ -15,7 +15,7 @@ use Inertia\Inertia;
 // });
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'face_verified'])->group(function () {
 
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
@@ -42,5 +42,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/inbox/mark-as-read/{message}', [App\Http\Controllers\InboxController::class, 'markAsRead'])->name('inbox.mark-as-read');
 });
+
+Route::get('/face-verification', [App\Http\Controllers\FaceVerificationController::class, 'index'])->name('face-verification.index');
+Route::post('/face-verification', [App\Http\Controllers\FaceVerificationController::class, 'store'])->name('face-verification.store');
 
 require __DIR__.'/auth.php';

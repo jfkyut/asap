@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Plan\Plan;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
 
 class RegisteredUserController extends Controller
 {
@@ -34,6 +35,7 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'phone' => 'required|string|max:20|unique:'.User::class,
+            'valid_id' => 'required|file|mimes:jpg,jpeg,png,pdf',
             'role' => 'required|in:user,admin,rider',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -45,6 +47,18 @@ class RegisteredUserController extends Controller
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
+
+        if ($request->hasFile('valid_id')) {
+            $file = $request->file('valid_id');
+            $path = $file->store('valid_ids', 'public');
+
+            $user->attachments()->create([
+                'file_path' => $path,
+                'type' => 'valid_id',
+            ]);
+        }
+
+
 
         event(new Registered($user));
 

@@ -16,7 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        //
+        $middleware->alias([
+            'face_verified' => \App\Http\Middleware\EnsureIsFaceVerified::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
