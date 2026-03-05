@@ -19,6 +19,7 @@ import PickAndDropTab from './transaction-partials/PickAndDropTab.vue';
 import PasuyoDetailsModal from './transaction-partials/pasuyo-tab-partials/PasuyoDetailsModal.vue';
 import TrackingModal from '@/Components/TrackingModal.vue';
 import PickAndDropDetailsModal from './transaction-partials/pickanddrop-tab-partials/PickAndDropDetailsModal.vue';
+import FeedbackModal from '@/Components/FeedbackModal.vue';
 
 const props = defineProps({
     transactions: Array
@@ -245,8 +246,12 @@ const getStatusColor = (status) => {
                                                 {{ transaction.delivery ? 'Assigned' : 'Pending' }}
                                             </p>
                                             <div class="flex gap-1">
+                                                <FeedbackModal
+                                                    v-if="transaction.status === 'completed' || transaction.status === 'cancelled'"
+                                                    :delivery="transaction?.delivery"
+                                                />
                                                 <TrackingModal
-                                                    :delivery="transaction.delivery"
+                                                    :delivery="transaction?.delivery"
                                                 />
                                                 <PasuyoDetailsModal
                                                     :pasuyo="transaction"
@@ -262,12 +267,19 @@ const getStatusColor = (status) => {
                                                 {{ transaction.delivery ? 'Assigned' : 'Pending' }}
                                             </p>
                                             <div class="flex gap-1">
+                                                <FeedbackModal
+                                                    v-if="transaction.status === 'completed' || transaction.status === 'cancelled'"
+                                                    :delivery="transaction?.delivery"
+                                                />
                                                 <TrackingModal
                                                     :delivery="transaction.delivery"
                                                 />
                                                 <PickAndDropDetailsModal
                                                     :pick-and-drop="transaction"
                                                 />
+                                                <!-- <div class="whitespace-pre-wrap">
+                                                    {{ transaction }}
+                                                </div> -->
                                             </div>
                                         </div>
                                     </template>

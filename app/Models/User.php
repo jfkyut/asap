@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Delivery\DeliveryFeedback;
 use App\Models\Pasuyo\Pasuyo;
 use App\Models\PickAndDrop\PickAndDrop;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -69,5 +70,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function attachments()
     {
         return $this->hasMany(UserAttachment::class);
+    }
+
+    public function deliveryFeedbacks()
+    {
+        return $this->hasMany(DeliveryFeedback::class, 'user_id');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeliveryFeedbackController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'face_verified'])->group(function () {
     Route::get('/inbox', [App\Http\Controllers\InboxController::class, 'index'])->name('inbox.index');
 
     Route::put('/inbox/mark-as-read/{message}', [App\Http\Controllers\InboxController::class, 'markAsRead'])->name('inbox.mark-as-read');
+
+    Route::post('delivery-feedback/{delivery}/store', [DeliveryFeedbackController::class, 'store'])->name('delivery-feedback.store');
 });
 
 Route::get('/face-verification', [App\Http\Controllers\FaceVerificationController::class, 'index'])->name('face-verification.index');
