@@ -35,14 +35,16 @@ class UserTransactionController extends Controller
         $payusos = $pasuyoQuery->with([
                                     'attachments',
                                     'delivery.trackings',
-                                    'delivery.rider'
+                                    'delivery.rider',
+                                    'delivery.feedbacks'
                                 ])
                                 ->latest()
                                 ->get();
 
         $pickAndDrops = $pickAndDropQuery->with([
                                             'delivery.trackings',
-                                            'delivery.rider'
+                                            'delivery.rider',
+                                            'delivery.feedbacks'
                                         ])
                                         ->latest()
                                         ->get();

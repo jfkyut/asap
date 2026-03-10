@@ -19,6 +19,7 @@ import PickAndDropTab from './transaction-partials/PickAndDropTab.vue';
 import PasuyoDetailsModal from './transaction-partials/pasuyo-tab-partials/PasuyoDetailsModal.vue';
 import TrackingModal from '@/Components/TrackingModal.vue';
 import PickAndDropDetailsModal from './transaction-partials/pickanddrop-tab-partials/PickAndDropDetailsModal.vue';
+import AddFeedbackModal from '@/Components/AddFeedbackModal.vue';
 import FeedbackModal from '@/Components/FeedbackModal.vue';
 
 const props = defineProps({
@@ -246,10 +247,16 @@ const getStatusColor = (status) => {
                                                 {{ transaction.delivery ? 'Assigned' : 'Pending' }}
                                             </p>
                                             <div class="flex gap-1">
-                                                <FeedbackModal
-                                                    v-if="transaction.status === 'completed' || transaction.status === 'cancelled'"
+                                                
+                                                <AddFeedbackModal
+                                                    v-if="(transaction.status === 'completed' || transaction.status === 'cancelled') && (!transaction?.delivery?.feedbacks || transaction.delivery.feedbacks.length === 0)"
                                                     :delivery="transaction?.delivery"
                                                 />
+                                                <FeedbackModal 
+                                                    v-else-if="transaction?.delivery?.feedbacks && transaction.delivery.feedbacks.length > 0"
+                                                    :delivery="transaction?.delivery"
+                                                />
+
                                                 <TrackingModal
                                                     :delivery="transaction?.delivery"
                                                 />
@@ -267,8 +274,13 @@ const getStatusColor = (status) => {
                                                 {{ transaction.delivery ? 'Assigned' : 'Pending' }}
                                             </p>
                                             <div class="flex gap-1">
-                                                <FeedbackModal
-                                                    v-if="transaction.status === 'completed' || transaction.status === 'cancelled'"
+                                                
+                                                <AddFeedbackModal
+                                                    v-if="(transaction.status === 'completed' || transaction.status === 'cancelled') && (!transaction?.delivery?.feedbacks || transaction.delivery.feedbacks.length === 0)"
+                                                    :delivery="transaction?.delivery"
+                                                />
+                                                <FeedbackModal 
+                                                    v-else-if="transaction?.delivery?.feedbacks && transaction.delivery.feedbacks.length > 0"
                                                     :delivery="transaction?.delivery"
                                                 />
                                                 <TrackingModal
