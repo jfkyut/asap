@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import { TabList, Tab, Tabs, Button } from 'primevue';
 import { router } from '@inertiajs/vue3';
 import SettingsDropdown from './auth-layout-partials/SettingsDropdown.vue';
+import TermsAndConditionModal from '@/Components/TermsAndConditionModal.vue';
 
 defineProps({
     hasPadding: {
@@ -97,4 +98,6 @@ const back = () => {
             </div>
         </nav>
     </div>
+
+    <TermsAndConditionModal />
 </template>

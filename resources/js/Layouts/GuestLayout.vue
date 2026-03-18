@@ -1,6 +1,8 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
+import TermsAndConditionModal from '@/Components/TermsAndConditionModal.vue';
+
 </script>
 
 <template>
@@ -24,4 +26,6 @@ import { Link } from '@inertiajs/vue3';
             <slot />
         </div>
     </div>
+
+    <TermsAndConditionModal />
 </template>

@@ -20,6 +20,7 @@ import BasicInformation from './create-partials/BasicInformation.vue';
 import Content from './create-partials/Content.vue';
 import Confirmation from './create-partials/Confirmation.vue';
 import { useToast } from 'vue-toastification';
+import IntroModal from './create-partials/IntroModal.vue';
 
 const page = usePage();
 const toast = useToast();
@@ -128,4 +129,6 @@ onMounted(() => {
             </Stepper>
         </div>
     </AuthenticatedLayout>
+
+    <IntroModal />
 </template>
