@@ -15,7 +15,7 @@ class EnsureIsFaceVerified
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->user() || ! $request->user()->where('face_verified_at', '!=', null)->exists()) {
+        if (! $request->user() || is_null($request->user()->face_verified_at)) {
             return redirect()->route('face-verification.index');
         }
 
