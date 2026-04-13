@@ -41,7 +41,7 @@ const { setFiles } = useCommon();
                         class="w-full"
                         v-model="form.budget"
                     />
-                    <label for="budget">Approx Budget (Optional)</label>
+                    <label for="budget">Estimated Price (Optional)</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
                     <Select

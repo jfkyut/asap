@@ -148,7 +148,7 @@ defineProps({
                             </div>
 
                             <p class="text-zinc-700 dark:text-zinc-300 mb-2 text-xs leading-tight">
-                                Same-day delivery service.
+                                Get it there.
                             </p>
 
                             <div class="flex items-center text-purple-600 dark:text-purple-400 font-semibold text-xs hover:translate-x-1 transition-transform">

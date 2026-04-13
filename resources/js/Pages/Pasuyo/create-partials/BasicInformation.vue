@@ -48,12 +48,41 @@ defineProps({
                         ]"
                         required
                     />
-                    <label for="location">Location</label>
+                    <label for="location">Drop Point Location</label>
                 </FloatLabel>
                 <FloatLabel variant="on">
                     <AddLocationModal :form="form" item-key="location_coordinates" />
-                    <label for="location">Select location from map</label>
+                    <label for="location">Select drop point location from map</label>
                 </FloatLabel>
+
+                <FloatLabel variant="on">
+                    <Select
+                        v-model="form.landmark_location"
+                        class="w-full"
+                        :options="[
+                            'Barangay Poblacion',
+                            'Barangay San Isidro',
+                            'Barangay Alimanguan',
+                            'Barangay New Agutaya'
+                        ]"
+                        required
+                    />
+                    <label for="landmark_location">Landmark Location (Where to buy?)</label>
+                </FloatLabel>
+                <FloatLabel variant="on">
+                    <AddLocationModal :form="form" item-key="landmark_location_coordinates" />
+                    <label for="landmark_location">Select landmark location from map (Where to buy?)</label>
+                </FloatLabel>
+
+                <FloatLabel variant="on">
+                    <InputText
+                        id="landmark"
+                        v-model="form.location_details"
+                        class="w-full"
+                    />
+                    <label for="landmark">Location details (Optional)</label>
+                </FloatLabel>
+
                 <FloatLabel variant="on">
                     <Textarea
                         id="note"
@@ -61,7 +90,7 @@ defineProps({
                         class="w-full"
                         auto-resize
                     />
-                    <label for="note">Note/Purok/Street/Whatever you want (Optional)</label>
+                    <label for="note">Special Instructions (Optional)</label>
                 </FloatLabel>
             </div>
         </div>

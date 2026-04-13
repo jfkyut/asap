@@ -21,6 +21,7 @@ import TrackingModal from '@/Components/TrackingModal.vue';
 import PickAndDropDetailsModal from './transaction-partials/pickanddrop-tab-partials/PickAndDropDetailsModal.vue';
 import AddFeedbackModal from '@/Components/AddFeedbackModal.vue';
 import FeedbackModal from '@/Components/FeedbackModal.vue';
+import ProofModal from './transaction-partials/pasuyo-tab-partials/ProofModal.vue';
 
 const props = defineProps({
     transactions: Array
@@ -201,11 +202,11 @@ const getStatusColor = (status) => {
                                             </div>
                                             <div v-if="transaction?.delivery?.distance_travelled" class="flex justify-between items-center">
                                                 <span class="text-xs text-zinc-600 dark:text-zinc-400">Distance Travelled</span>
-                                                <span class="text-xs font-medium text-zinc-900 dark:text-zinc-100">{{ (transaction?.delivery.distance_travelled / 1000).toFixed(2) }} km</span>
+                                                <span class="text-xs font-medium text-zinc-900 dark:text-zinc-100">{{ transaction?.delivery.distance_travelled }} km</span>
                                             </div>
                                             <div v-if="transaction?.delivery?.distance_travelled" class="flex justify-between items-center">
                                                 <span class="text-xs text-zinc-600 dark:text-zinc-400">Travel Fee</span>
-                                                <span class="text-xs font-medium text-zinc-900 dark:text-zinc-100">₱30.00 + ₱15.00/km</span>
+                                                <span class="text-xs font-medium text-zinc-900 dark:text-zinc-100">₱15.00/km</span>
                                             </div>
                                             <div class="pt-2 border-t border-zinc-200 dark:border-zinc-700 flex justify-between items-center">
                                                 <span class="text-xs font-semibold text-zinc-900 dark:text-zinc-100">Total Payment</span>
@@ -263,6 +264,10 @@ const getStatusColor = (status) => {
                                                 <PasuyoDetailsModal
                                                     :pasuyo="transaction"
                                                 />
+                                                <ProofModal
+                                                    v-if="transaction?.delivery?.attachments && transaction.delivery.attachments.length > 0"
+                                                    :attachments="transaction.delivery.attachments"
+                                                 />
                                             </div>
                                         </div>
                                     </template>
@@ -292,6 +297,10 @@ const getStatusColor = (status) => {
                                                 <!-- <div class="whitespace-pre-wrap">
                                                     {{ transaction }}
                                                 </div> -->
+                                                <ProofModal
+                                                    v-if="transaction?.delivery?.attachments && transaction.delivery.attachments.length > 0"
+                                                    :attachments="transaction.delivery.attachments"
+                                                 />
                                             </div>
                                         </div>
                                     </template>

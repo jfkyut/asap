@@ -65,18 +65,43 @@ const isShowModal = ref(false);
                         </div>
                     </div>
 
-                    <!-- Location Section -->
+                    <!-- Location & Landmark Section -->
                     <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 space-y-3">
-                        <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200 mb-3">📍 Location</h4>
-                        <div class="space-y-2.5">
-                            <div>
-                                <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Area</p>
-                                <p class="text-sm text-zinc-900 dark:text-white">{{ pasuyo.location }}</p>
+                        <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200 mb-3">📍 Location Information</h4>
+                        <div class="space-y-4">
+                            <!-- Primary Location -->
+                            <div class="border-b border-blue-200 dark:border-blue-800/50 pb-4 last:border-b-0 last:pb-0">
+                                <h5 class="text-xs font-semibold text-blue-800 dark:text-blue-300 uppercase tracking-wide mb-2">Delivery Area</h5>
+                                <div class="space-y-2.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Location</p>
+                                        <p class="text-sm text-zinc-900 dark:text-white">{{ pasuyo.location }}</p>
+                                    </div>
+                                    <div v-if="pasuyo?.location_details">
+                                        <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Details</p>
+                                        <p class="text-sm text-zinc-900 dark:text-white">{{ pasuyo.location_details }}</p>
+                                    </div>
+                                    <div v-if="pasuyo?.location_coordinates">
+                                        <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Coordinates</p>
+                                        <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-900/50 p-2 rounded mb-3">{{ pasuyo.location_coordinates }}</p>
+                                        <LocationModal :pasuyo="pasuyo" />
+                                    </div>
+                                </div>
                             </div>
-                            <div v-if="pasuyo?.location_coordinates">
-                                <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Coordinates</p>
-                                <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-900/50 p-2 rounded mb-3">{{ pasuyo.location_coordinates }}</p>
-                                <LocationModal :pasuyo="pasuyo" />
+
+                            <!-- Shopping Location / Where to Buy -->
+                            <div v-if="pasuyo?.landmark_location" class="pt-2 bg-blue-100 dark:bg-blue-900/40 -mx-4 mb-3 px-4 py-3 rounded">
+                                <h5 class="text-xs font-semibold text-blue-900 dark:text-blue-200 uppercase tracking-wide mb-2">🛒 Where to Buy (Shopping Location)</h5>
+                                <div class="space-y-2.5">
+                                    <div>
+                                        <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">shopping Area</p>
+                                        <p class="text-sm font-semibold text-zinc-900 dark:text-white">{{ pasuyo.landmark_location }}</p>
+                                    </div>
+                                    <div v-if="pasuyo?.landmark_location_coordinates">
+                                        <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-1">Coordinates</p>
+                                        <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-900/50 p-2 rounded">{{ pasuyo.landmark_location_coordinates }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

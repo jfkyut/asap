@@ -29,8 +29,13 @@ const isLoading = ref(false);
 const form = useForm({
     location: '',
     location_coordinates: null,
+    landmark_location: '',
+    landmark_location_coordinates: null,
+
     full_name: '',
     phone: '',
+
+    location_details: '',
     note: '',
     content: '',
     budget: '',

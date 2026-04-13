@@ -36,7 +36,8 @@ class UserTransactionController extends Controller
                                     'attachments',
                                     'delivery.trackings',
                                     'delivery.rider',
-                                    'delivery.feedbacks'
+                                    'delivery.feedbacks',
+                                    'delivery.attachments'
                                 ])
                                 ->latest()
                                 ->get();
@@ -44,7 +45,9 @@ class UserTransactionController extends Controller
         $pickAndDrops = $pickAndDropQuery->with([
                                             'delivery.trackings',
                                             'delivery.rider',
-                                            'delivery.feedbacks'
+                                            'delivery.feedbacks',
+                                            'delivery.attachments'
+
                                         ])
                                         ->latest()
                                         ->get();

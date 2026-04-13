@@ -34,7 +34,7 @@ const isShowModal = ref(true);
                     <div class="flex items-start gap-2">
                         <i class="ri-checkbox-circle-line text-green-500 mt-0.5"></i>
                         <p>
-                            Since we don’t know the exact amount of the goods yet, the final rate will reflect on the order details once the rider completes the purchase.
+                            Once your rider arrives at the store and confirms the item costs, they will update the status to in Progress. Your total payment amount will then instantly reflect on your dashboard.
                         </p>
                     </div>
 

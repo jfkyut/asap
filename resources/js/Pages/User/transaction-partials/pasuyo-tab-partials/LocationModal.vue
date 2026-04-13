@@ -22,11 +22,13 @@ const isShowModal = ref(false);
     />
     <LocationMapModal
         :coordinates="[
-            pasuyo.location_coordinates
+            pasuyo.location_coordinates,
+            pasuyo.landmark_location_coordinates
         ]"
         :show="isShowModal"
         :labels="[
-            'Pasuyo Location'
+            'Drop Point Location',
+            'Shopping Location'
         ]"
         @close="isShowModal = false"
     />
