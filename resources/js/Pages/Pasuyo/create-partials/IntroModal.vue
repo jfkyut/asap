@@ -45,19 +45,14 @@ const isShowModal = ref(true);
                         </p>
                     </div>
 
-                    <div class="flex items-start gap-2">
-                        <i class="ri-checkbox-circle-line text-green-500 mt-0.5"></i>
-                        <p>
+                    <ul class="space-y-2 list-disc list-inside ml-6">
+                        <li class="text-gray-600 dark:text-gray-300">
                             Delivery Fee: PHP15/KM
-                        </p>
-                    </div>
-
-                    <div class="flex items-start gap-2">
-                        <i class="ri-checkbox-circle-line text-green-500 mt-0.5"></i>
-                        <p>
+                        </li>
+                        <li class="text-gray-600 dark:text-gray-300">
                             Rider will earn the full DF.
-                        </p>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </template>
 

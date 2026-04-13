@@ -34,9 +34,41 @@ defineProps({
                         <span class="text-gray-600 dark:text-gray-400">Phone:</span>
                         <span class="font-medium text-gray-900 dark:text-white">{{ form.phone || 'Not provided' }}</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Location Information Card -->
+            <div class="bg-white dark:bg-zinc-700 p-4 rounded-lg border border-gray-200 dark:border-zinc-600 shadow-sm">
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                    <i class="ri-map-pin-line text-blue-600"></i>
+                    Delivery Location
+                </h4>
+                <div class="space-y-2 text-sm">
                     <div class="flex justify-between">
                         <span class="text-gray-600 dark:text-gray-400">Location:</span>
                         <span class="font-medium text-gray-900 dark:text-white">{{ form.location || 'Not provided' }}</span>
+                    </div>
+                    <div v-if="form.location_details" class="flex justify-between">
+                        <span class="text-gray-600 dark:text-gray-400">Details:</span>
+                        <span class="font-medium text-gray-900 dark:text-white">{{ form.location_details }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopping Location Card -->
+            <div v-if="form.landmark_location" class="bg-white dark:bg-zinc-700 p-4 rounded-lg border border-gray-200 dark:border-zinc-600 shadow-sm">
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                    <i class="ri-store-2-line text-blue-600"></i>
+                    Where to Buy (Shopping Location)
+                </h4>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600 dark:text-gray-400">Store/Area:</span>
+                        <span class="font-medium text-gray-900 dark:text-white">{{ form.landmark_location }}</span>
+                    </div>
+                    <div v-if="form.landmark_location_coordinates" class="flex justify-between">
+                        <span class="text-gray-600 dark:text-gray-400">Coordinates:</span>
+                        <span class="font-medium text-gray-900 dark:text-white text-xs">{{ form.landmark_location_coordinates }}</span>
                     </div>
                 </div>
             </div>
@@ -67,10 +99,21 @@ defineProps({
             <div class="md:col-span-2 bg-white dark:bg-zinc-700 p-4 rounded-lg border border-gray-200 dark:border-zinc-600 shadow-sm">
                 <h4 class="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                     <i class="ri-message-3-line text-blue-600"></i>
-                    Content
+                    What to Buy
                 </h4>
                 <p class="text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-zinc-800 p-3 rounded">
                     {{ form.content || 'No content provided' }}
+                </p>
+            </div>
+
+            <!-- Note Card (If exists, full width) -->
+            <div v-if="form.note" class="md:col-span-2 bg-white dark:bg-zinc-700 p-4 rounded-lg border border-gray-200 dark:border-zinc-600 shadow-sm">
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                    <i class="ri-sticky-note-line text-blue-600"></i>
+                    Additional Note
+                </h4>
+                <p class="text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-zinc-800 p-3 rounded italic">
+                    {{ form.note }}
                 </p>
             </div>
         </div>
