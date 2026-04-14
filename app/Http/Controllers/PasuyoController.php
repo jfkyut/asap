@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pasuyo;
-use Illuminate\Http\Request;
 use App\Http\Requests\Pasuyo\StorePasuyoRequest;
+use App\Models\Pasuyo\Pasuyo;
+use Illuminate\Http\Request;
 
 class PasuyoController extends Controller
 {
@@ -59,9 +59,15 @@ class PasuyoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pasuyo $pasuyo)
     {
-        //
+        $pasuyo->update($request->only('status'));
+
+        $pasuyo->trackings()->create([
+            'status_update' => "Pasuyo status updated to {$pasuyo->status}.",
+        ]);
+
+        return redirect()->back();
     }
 
     /**

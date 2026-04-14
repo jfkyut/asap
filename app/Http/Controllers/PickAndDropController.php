@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PickAndDrop\PickAndDrop;
 use Illuminate\Http\Request;
 use App\Http\Requests\PickAndDrop\StorePickAndDropRequest;
 
@@ -56,9 +57,15 @@ class PickAndDropController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, PickAndDrop $pickAndDrop)
     {
-        //
+        $pickAndDrop->update($request->only('status'));
+
+        $pickAndDrop->trackings()->create([
+            'status_update' => "Pick and Drop status updated to {$pickAndDrop->status}.",
+        ]);
+
+        return redirect()->back();
     }
 
     /**

@@ -27,10 +27,12 @@ Route::middleware(['auth', 'face_verified'])->group(function () {
     // pasuyo routes
     Route::get('/pasuyo/create', [App\Http\Controllers\PasuyoController::class, 'create'])->name('pasuyo.create');
     Route::post('/pasuyo/store', [App\Http\Controllers\PasuyoController::class, 'store'])->name('pasuyo.store');
+    Route::put('/pasuyo/{pasuyo}/update', [App\Http\Controllers\PasuyoController::class, 'update'])->name('pasuyo.update');
 
     // pick and drop routes
     Route::get('/pick-and-drop/create', [App\Http\Controllers\PickAndDropController::class, 'create'])->name('pick-and-drop.create');
     Route::post('/pick-and-drop/store', [App\Http\Controllers\PickAndDropController::class, 'store'])->name('pick-and-drop.store');
+    Route::put('/pick-and-drop/{pickAndDrop}/update', [App\Http\Controllers\PickAndDropController::class, 'update'])->name('pick-and-drop.update');
 
     // user transactions routes
     Route::get('/transactions', [App\Http\Controllers\UserTransactionController::class, 'index'])->name('transaction.index');

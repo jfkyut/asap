@@ -22,6 +22,8 @@ import PickAndDropDetailsModal from './transaction-partials/pickanddrop-tab-part
 import AddFeedbackModal from '@/Components/AddFeedbackModal.vue';
 import FeedbackModal from '@/Components/FeedbackModal.vue';
 import ProofModal from './transaction-partials/pasuyo-tab-partials/ProofModal.vue';
+import CancelPasuyoModal from './transaction-partials/pasuyo-tab-partials/CancelPasuyoModal.vue';
+import CancelPickAndDropModal from './transaction-partials/pickanddrop-tab-partials/CancelPickAndDropModal.vue';
 
 const props = defineProps({
     transactions: Array
@@ -267,7 +269,11 @@ const getStatusColor = (status) => {
                                                 <ProofModal
                                                     v-if="transaction?.delivery?.attachments && transaction.delivery.attachments.length > 0"
                                                     :attachments="transaction.delivery.attachments"
-                                                 />
+                                                />
+                                                <CancelPasuyoModal
+                                                    v-if="transaction?.status === 'pending'"
+                                                    :pasuyo="transaction"
+                                                />
                                             </div>
                                         </div>
                                     </template>
@@ -300,7 +306,12 @@ const getStatusColor = (status) => {
                                                 <ProofModal
                                                     v-if="transaction?.delivery?.attachments && transaction.delivery.attachments.length > 0"
                                                     :attachments="transaction.delivery.attachments"
-                                                 />
+                                                />
+
+                                                <CancelPickAndDropModal
+                                                    v-if="transaction?.status === 'pending'"
+                                                    :pick-and-drop="transaction"
+                                                />
                                             </div>
                                         </div>
                                     </template>
